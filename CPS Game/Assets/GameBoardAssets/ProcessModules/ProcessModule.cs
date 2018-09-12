@@ -19,7 +19,8 @@ public abstract class ProcessModule : MonoBehaviour, IModule {
 
 	public GameObject popupPrefab;
 	private GameObject popupInstance;
-	private Text popupText;
+	private Text displayTextTitle;
+	private Text displayTextContent;
 
 	private void Awake() {
 		displayFields = new List<string> ();
@@ -29,7 +30,13 @@ public abstract class ProcessModule : MonoBehaviour, IModule {
 		this.popupInstance = Instantiate (popupPrefab, popupPrefab.transform.position, popupPrefab.transform.rotation);
 		Canvas c = (Canvas) FindObjectOfType (typeof(Canvas));
 		this.popupInstance.transform.SetParent (c.transform, false);
-		this.popupText = this.popupInstance.GetComponentInChildren<Text> ();
+		var texts = this.popupInstance.GetComponentsInChildren<Text>();
+		if (texts.Length == 2) {
+			this.displayTextContent = texts [1];
+			this.displayTextTitle = texts [0];
+		}
+		this.displayTextTitle.text = this.GetType().Name;
+
 		this.CloseInfoPopup();
 	}
 
@@ -47,13 +54,18 @@ public abstract class ProcessModule : MonoBehaviour, IModule {
 	/// </summary>
 	private void UpdatePopupDisplay() {
 		var bindings = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic;
-		var fields = this.GetType().GetFields(bindings).Where(f =>displayFields.Contains(f.Name)).ToList();
+
+		var fields = new List<FieldInfo> ();
+		foreach (string fieldName in displayFields) {
+			fields.Add(this.GetType().GetField(fieldName, bindings));
+		}
+
 		var displayStrings = new List<string>();
 		foreach(FieldInfo field in fields) {
 			displayStrings.Add(field.Name + ": " + field.GetValue(this));
 		}
 
-		this.popupText.text = string.Join("\n", displayStrings.ToArray());
+		this.displayTextContent.text = string.Join("\n", displayStrings.ToArray());
 	}
 
 	/// <summary>
