@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class WaterReservoir : ProcessModule {
 
-	public int Capacity = 10;
-
-	private int fill = 5;
+	public int waterLevel = 5;
+	public int capacity = 10;
+	private int outFlow = 1;
 
 	private void Start() {
 		//specify which fields to display on the UI
-		this.displayFields.Add("Capacity");
-		this.displayFields.Add("fill");
+		this.displayFields.Add("waterLevel");
+		this.displayFields.Add("capacity");
+		this.displayFields.Add("outFlow");
 	}
 }
