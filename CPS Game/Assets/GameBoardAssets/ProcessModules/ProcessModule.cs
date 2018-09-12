@@ -1,0 +1,74 @@
+﻿using System;
+using System.Reflection;
+using System.Linq;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+/// <summary>
+/// Abstract class with implementation that is common to all modules.  Right now, it simply displays all display fields when the mouse is hovered over the
+/// module.  When inheriting from this class, all you need to do to add another display field is add the name of the field to the displayFields list.  There
+/// is a display field called status automatically added for each module.
+/// </summary>
+public abstract class ProcessModule : MonoBehaviour, IModule {
+
+	protected List<string> displayFields;
+
+	public StateOfOperation Status = StateOfOperation.Active;
+
+	public GameObject popupPrefab;
+	private GameObject popupInstance;
+	private Text popupText;
+
+	private void Awake() {
+		displayFields = new List<string> ();
+		displayFields.Add("Status");
+
+		//Instantiate the popup that displays the display fields
+		this.popupInstance = Instantiate (popupPrefab, popupPrefab.transform.position, popupPrefab.transform.rotation);
+		Canvas c = (Canvas) FindObjectOfType (typeof(Canvas));
+		this.popupInstance.transform.SetParent (c.transform, false);
+		this.popupText = this.popupInstance.GetComponentInChildren<Text> ();
+		this.CloseInfoPopup();
+	}
+
+	private void OnMouseOver() {
+		this.OpenInfoPopup(Input.mousePosition);
+	}
+
+	private void OnMouseExit() {
+		this.CloseInfoPopup();
+	}
+
+	/// <summary>
+	/// Updates the popup display by getting the values of the fields and changing the popup text to display
+	/// the current values of the fields
+	/// </summary>
+	private void UpdatePopupDisplay() {
+		var bindings = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic;
+		var fields = this.GetType().GetFields(bindings).Where(f =>displayFields.Contains(f.Name)).ToList();
+		var displayStrings = new List<string>();
+		foreach(FieldInfo field in fields) {
+			displayStrings.Add(field.Name + ": " + field.GetValue(this));
+		}
+
+		this.popupText.text = string.Join("\n", displayStrings.ToArray());
+	}
+
+	/// <summary>
+	/// Opens the info popup at the given location
+	/// </summary>
+	/// <param name="position">The position to place the popup at.</param>
+	protected void OpenInfoPopup(Vector2 position) {
+		this.CloseInfoPopup();
+		this.UpdatePopupDisplay();
+		RectTransform UITransform = this.popupInstance.GetComponent<RectTransform> ();
+		UITransform.position = position + new Vector2((UITransform.rect.width / 2), (UITransform.rect.height / 2));
+		this.popupInstance.SetActive (true);
+	}
+
+	protected void CloseInfoPopup() {
+		this.popupInstance.SetActive (false);
+	}
+}
