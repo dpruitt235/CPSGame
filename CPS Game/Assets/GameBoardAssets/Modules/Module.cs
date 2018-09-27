@@ -11,20 +11,20 @@ using UnityEngine.UI;
 /// module.  When inheriting from this class, all you need to do to add another display field is add the name of the field to the displayFields list.  There
 /// is a display field called status automatically added for each module.
 /// </summary>
-public abstract class ProcessModule : MonoBehaviour, IModule {
+public abstract class Module : MonoBehaviour, IModule
+{
+    public GameObject popupPrefab;
 
-	protected List<string> displayFields;
+    public bool Attacked = false;
 
-	public StateOfOperation Status = StateOfOperation.Active;
-
-	public GameObject popupPrefab;
+    protected List<string> displayFields;
 	private GameObject popupInstance;
 	private Text displayTextTitle;
 	private Text displayTextContent;
 
 	private void Awake() {
-		displayFields = new List<string> ();
-		displayFields.Add("Status");
+		this.displayFields = new List<string>();
+        this.displayFields.Add("Attacked");
 
 		//Instantiate the popup that displays the display fields
 		this.popupInstance = Instantiate (popupPrefab, popupPrefab.transform.position, popupPrefab.transform.rotation);
@@ -39,6 +39,8 @@ public abstract class ProcessModule : MonoBehaviour, IModule {
 
 		this.CloseInfoPopup();
 	}
+
+    public abstract void UpdateModule();
 
 	private void OnMouseOver() {
 		this.OpenInfoPopup(Input.mousePosition);

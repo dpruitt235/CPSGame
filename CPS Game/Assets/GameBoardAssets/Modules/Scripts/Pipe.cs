@@ -2,6 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UVFilter : ProcessModule {
-	
+public class Pipe : Module
+{
+
+    public override void UpdateModule()
+    {
+
+    }
+
 }
