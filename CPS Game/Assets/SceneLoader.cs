@@ -15,14 +15,4 @@ public class SceneLoader : MonoBehaviour {
     {
         SceneManager.LoadScene(0);
     }
-
-    public void DefenderWins()
-    {
-        SceneManager.LoadScene(2);
-    }
-
-    public void AttackerWins()
-    {
-        SceneManager.LoadScene(3);
-    }
 }
