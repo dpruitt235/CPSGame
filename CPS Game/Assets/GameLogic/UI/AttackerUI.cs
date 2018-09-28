@@ -12,6 +12,9 @@ public class AttackerUI : MonoBehaviour
         this.panelText = this.GetComponentInChildren<Text>();
     }
 
+    /// <summary>
+    /// Displays how many attacks the attacker has left
+    /// </summary>
     private void Update()
     {
         this.panelText.text = "Available Attacks: " + this.gameController.AvailableAttacks;

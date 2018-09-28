@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Simply a text ui to show whose turn it is
+/// </summary>
 public class TurnIndicator : MonoBehaviour
 {
     private GameController gameController;
@@ -13,7 +16,6 @@ public class TurnIndicator : MonoBehaviour
         this.gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
         this.label = GetComponentInChildren<Text>();
     }
-
 
     private void Update ()
     {

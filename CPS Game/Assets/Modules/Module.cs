@@ -5,18 +5,17 @@ using UnityEngine;
 using UnityEngine.UI;
 
 /// <summary>
-/// Abstract class with implementation that is common to all modules.  Right now, it simply displays all display fields when the mouse is hovered over the
-/// module.  When inheriting from this class, all you need to do to add another display field is add the name of the field to the displayFields list.  There
-/// is a display field called status automatically added for each module.
+/// Abstract class with implementation that is common to all modules.  Unless the virtual functions are overriden for custom functionality,
+/// the modules will pass water through them iff their corresponding pump is on and they have the capacity to take in more water.
 /// </summary>
 public abstract class Module : MonoBehaviour
 {
     public GameObject popupPrefab;
     public GameObject AttackedIndicator;
 
-    public Pump InFlowingPump;
-
     public Module PreviousModule;
+
+    public Pump InFlowingPump;
     
     public bool Attacked = false;
 
@@ -77,6 +76,10 @@ public abstract class Module : MonoBehaviour
             this.PreviousModule.Tick();
     }
 
+    /// <summary>
+    /// Only called when the pump is on.  Brings as much water as it can from the previous module into this one.
+    /// Override for custom functionality in modules!
+    /// </summary>
     protected virtual void OnFlow()
     {
         if (this.PreviousModule)
@@ -87,21 +90,33 @@ public abstract class Module : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Override to specify how the module behaves when fill exceeds capacity.  (Can only occur if OnFlow is overritten)
+    /// </summary>
     protected virtual void OnOverflow()
     {
 
     }
 
+    /// <summary>
+    /// What to do when the attacker attacks the module
+    /// </summary>
     protected virtual void Attack()
     {
 
     }
 
+    /// <summary>
+    /// what to do when the module is no longer being attacked
+    /// </summary>
     protected virtual void Fix()
     {
 
     }
 
+    /// <summary>
+    /// Defines interaction with mouse
+    /// </summary>
     private void OnMouseOver()
     {
         if (Input.GetMouseButtonDown(0))
@@ -172,6 +187,9 @@ public abstract class Module : MonoBehaviour
 		this.popupInstance.SetActive(true);
 	}
 
+    /// <summary>
+    /// Closes the info popup
+    /// </summary>
 	protected void CloseInfoPopup() {
 		this.popupInstance.SetActive(false);
 	}

@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class Pipe : Module
 {
-
+    //No special functionality in pipes (yet?)
 }

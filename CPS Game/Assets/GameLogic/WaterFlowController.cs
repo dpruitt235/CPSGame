@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Controls the water flow between modules
+/// </summary>
 public class WaterFlowController : MonoBehaviour
 {
     public Reservoir Reservoir;
@@ -18,12 +21,20 @@ public class WaterFlowController : MonoBehaviour
         this.firstModule = currMod;
     }
 
+    /// <summary>
+    /// Makes time move (tick) forward for the modules.  Ticking time forward allows for the water to flow through
+    /// the system.
+    /// </summary>
     public void TickModules()
     {
         this.firstModule.Fill = this.firstModule.Capacity;
         this.Reservoir.Tick();
     }
 
+    /// <summary>
+    /// Starts ticking time forward for the modules in regular intervals
+    /// </summary>
+    /// <param name="secondsBetweenTicks">The amount of time in between ticks</param>
     public void StartWaterFlow(float secondsBetweenTicks)
     {
         this.InvokeRepeating("TickModules", 0.1f, secondsBetweenTicks);

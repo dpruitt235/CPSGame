@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Pump : Module
 {
+    /// <summary>
+    /// Whether the pump is on or not.  If attacked, it is always off (broken)
+    /// </summary>
     public bool On {
         get {
             if (!this.Attacked)

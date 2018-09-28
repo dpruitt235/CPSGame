@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Controls whose turn it is, the actions available to the players, and other game logic
+/// </summary>
 public class GameController : MonoBehaviour
 {
     public WaterFlowController WaterFlowController;
