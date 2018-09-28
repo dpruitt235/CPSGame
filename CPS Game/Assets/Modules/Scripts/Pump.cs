@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class Pump : Module
 {
+    public bool On = false;
 
-    public override void UpdateModule()
+    public override void Tick()
     {
+        //Custom Tick Behavior
 
+        base.Tick();
     }
 }

@@ -5,8 +5,10 @@ using UnityEngine;
 public class Filter : Module
 {
 
-    public override void UpdateModule()
+    public override void Tick()
     {
+        //Custom Tick Behavior
 
+        base.Tick();
     }
 }

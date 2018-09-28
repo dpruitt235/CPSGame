@@ -8,5 +8,5 @@ using UnityEngine;
 /// </summary>
 public interface IModule
 {
-    void UpdateModule();
+    void Tick();
 }

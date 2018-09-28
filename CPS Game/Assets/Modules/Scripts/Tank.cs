@@ -5,8 +5,10 @@ using UnityEngine;
 public class Tank : Module
 {
 
-    public override void UpdateModule()
+    public override void Tick()
     {
+        //Custom Tick Behavior
 
+        base.Tick();
     }
 }

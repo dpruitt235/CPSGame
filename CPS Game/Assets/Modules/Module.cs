@@ -14,8 +14,15 @@ using UnityEngine.UI;
 public abstract class Module : MonoBehaviour, IModule
 {
     public GameObject popupPrefab;
+
+    public Pump InFlowingPump;
+
+    public Module PreviousModule;
     
     public bool Attacked = false;
+
+    public int Fill = 0;
+    public int Capacity = 1;
 
     protected List<string> displayFields;
 	private GameObject popupInstance;
@@ -25,39 +32,49 @@ public abstract class Module : MonoBehaviour, IModule
 	private void Awake() {
 		this.displayFields = new List<string>();
         this.displayFields.Add("Attacked");
-        this.displayFields.Add("HasWater");
+        this.displayFields.Add("Fill");
+        this.displayFields.Add("Capacity");
 
-		//Instantiate the popup that displays the display fields
-		this.popupInstance = Instantiate (popupPrefab, popupPrefab.transform.position, popupPrefab.transform.rotation);
+        //Instantiate the popup that displays the display fields
+        this.popupInstance = Instantiate (popupPrefab, popupPrefab.transform.position, popupPrefab.transform.rotation);
 		Canvas c = (Canvas) FindObjectOfType (typeof(Canvas));
 		this.popupInstance.transform.SetParent (c.transform, false);
 		var texts = this.popupInstance.GetComponentsInChildren<Text>();
 		if (texts.Length == 2) {
-			this.displayTextContent = texts [1];
-			this.displayTextTitle = texts [0];
+			this.displayTextContent = texts[1];
+			this.displayTextTitle = texts[0];
 		}
-		this.displayTextTitle.text = this.GetType().Name;
+		this.displayTextTitle.text = this.gameObject.name;
 
 		this.CloseInfoPopup();
 	}
 
-    public abstract void UpdateModule();
+    public virtual void Tick()
+    {
+        if (this.InFlowingPump.On && this.PreviousModule)
+        {
+            this.Fill += this.PreviousModule.Fill;
+            this.PreviousModule.Fill = 0;
+        }
+
+        if (this.Fill > this.Capacity)
+        {
+            Debug.Log("Overflow in module " + this.gameObject.name);
+        }
+
+        this.UpdatePopupDisplay();
+        if (this.PreviousModule)
+            this.PreviousModule.Tick();
+    }
 
 	private void OnMouseDown() {
-        if (Input.GetButtonDown("Debug"))
+        if (this.popupInstance.activeSelf)
         {
-            if (this.popupInstance.activeSelf)
-            {
-                this.CloseInfoPopup();
-            } else
-            {
-                this.OpenInfoPopup(Input.mousePosition);
-            }
+            this.CloseInfoPopup();
+        } else
+        {
+            this.OpenInfoPopup(Input.mousePosition);
         }
-	}
-
-	private void OnMouseExit() {
-		this.CloseInfoPopup();
 	}
 
 	/// <summary>
