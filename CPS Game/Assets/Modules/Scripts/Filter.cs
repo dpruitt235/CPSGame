@@ -1,14 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class Filter : Module
+﻿public class Filter : Module
 {
-
-    public override void Tick()
+    protected override void OnFlow()
     {
-        //Custom Tick Behavior
-
-        base.Tick();
+        if (!this.Attacked)
+        {
+            base.OnFlow();
+        }
     }
 }

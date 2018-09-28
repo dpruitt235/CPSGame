@@ -4,12 +4,21 @@ using UnityEngine;
 
 public class Pump : Module
 {
-    public bool On = false;
-
-    public override void Tick()
-    {
-        //Custom Tick Behavior
-
-        base.Tick();
+    public bool On {
+        get {
+            if (!this.Attacked)
+            {
+                return this.on;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        set {
+            this.on = value;
+        }
     }
+
+    private bool on = true;
 }

@@ -4,12 +4,23 @@ using UnityEngine;
 
 public class WaterFlowController : MonoBehaviour
 {
-    public Tank Reservoir;
-    public Module FirstModule;
+    public Reservoir Reservoir;
+
+    private Module firstModule;
+
+    private void Start()
+    {
+        Module currMod = Reservoir;
+        while (currMod.PreviousModule)
+        {
+            currMod = currMod.PreviousModule;
+        }
+        this.firstModule = currMod;
+    }
 
     public void TickModules()
     {
-        this.FirstModule.Fill = this.FirstModule.Capacity;
+        this.firstModule.Fill = this.firstModule.Capacity;
         this.Reservoir.Tick();
     }
 

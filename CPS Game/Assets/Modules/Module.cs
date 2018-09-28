@@ -60,12 +60,16 @@ public abstract class Module : MonoBehaviour
         this.gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
     }
 
-    public virtual void Tick()
+    public void Tick()
     {
-        if (this.InFlowingPump.On && this.PreviousModule)
+        if (this.InFlowingPump.On)
         {
-            this.Fill += this.PreviousModule.Fill;
-            this.PreviousModule.Fill = 0;
+            this.OnFlow();
+        }
+
+        if (this.Fill > this.Capacity)
+        {
+            this.OnOverflow();
         }
 
         this.UpdatePopupDisplay();
@@ -73,17 +77,43 @@ public abstract class Module : MonoBehaviour
             this.PreviousModule.Tick();
     }
 
+    protected virtual void OnFlow()
+    {
+        if (this.PreviousModule)
+        {
+            int inFlow = Mathf.Clamp(this.PreviousModule.Fill, 0, this.Capacity - this.Fill);
+            this.Fill += inFlow;
+            this.PreviousModule.Fill -= inFlow;
+        }
+    }
+
+    protected virtual void OnOverflow()
+    {
+
+    }
+
+    protected virtual void Attack()
+    {
+
+    }
+
+    protected virtual void Fix()
+    {
+
+    }
+
     private void OnMouseOver()
     {
         if (Input.GetMouseButtonDown(0))
         {
-            if (this.gameController.GameState == GameState.AttackerTurn)
+            if (this.gameController && this.gameController.GameState == GameState.AttackerTurn)
             {
                 if (this.Attacked)
                 {
                     this.Attacked = false;
                     this.attackedIndicatorInstance.SetActive(false);
                     this.gameController.RemoveAttack();
+                    this.Fix();
                 }
                 else
                 {
@@ -92,6 +122,7 @@ public abstract class Module : MonoBehaviour
                         this.Attacked = true;
                         this.attackedIndicatorInstance.SetActive(true);
                         this.gameController.AddAttack();
+                        this.Attack();
                     }
                 }
             }
