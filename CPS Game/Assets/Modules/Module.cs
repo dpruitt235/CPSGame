@@ -1,7 +1,5 @@
-﻿using System;
+﻿
 using System.Reflection;
-using System.Linq;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,9 +9,10 @@ using UnityEngine.UI;
 /// module.  When inheriting from this class, all you need to do to add another display field is add the name of the field to the displayFields list.  There
 /// is a display field called status automatically added for each module.
 /// </summary>
-public abstract class Module : MonoBehaviour, IModule
+public abstract class Module : MonoBehaviour
 {
     public GameObject popupPrefab;
+    public GameObject AttackedIndicator;
 
     public Pump InFlowingPump;
 
@@ -24,10 +23,14 @@ public abstract class Module : MonoBehaviour, IModule
     public int Fill = 0;
     public int Capacity = 1;
 
+    private GameController gameController;
+
     protected List<string> displayFields;
 	private GameObject popupInstance;
 	private Text displayTextTitle;
 	private Text displayTextContent;
+
+    private GameObject attackedIndicatorInstance;
 
 	private void Awake() {
 		this.displayFields = new List<string>();
@@ -47,7 +50,15 @@ public abstract class Module : MonoBehaviour, IModule
 		this.displayTextTitle.text = this.gameObject.name;
 
 		this.CloseInfoPopup();
+
+        this.attackedIndicatorInstance = Instantiate(this.AttackedIndicator, this.transform);
+        this.attackedIndicatorInstance.SetActive(false);
 	}
+
+    private void Start()
+    {
+        this.gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
+    }
 
     public virtual void Tick()
     {
@@ -57,31 +68,52 @@ public abstract class Module : MonoBehaviour, IModule
             this.PreviousModule.Fill = 0;
         }
 
-        if (this.Fill > this.Capacity)
-        {
-            Debug.Log("Overflow in module " + this.gameObject.name);
-        }
-
         this.UpdatePopupDisplay();
         if (this.PreviousModule)
             this.PreviousModule.Tick();
     }
 
-	private void OnMouseDown() {
-        if (this.popupInstance.activeSelf)
+    private void OnMouseOver()
+    {
+        if (Input.GetMouseButtonDown(0))
         {
-            this.CloseInfoPopup();
-        } else
-        {
-            this.OpenInfoPopup(Input.mousePosition);
+            if (this.gameController.GameState == GameState.AttackerTurn)
+            {
+                if (this.Attacked)
+                {
+                    this.Attacked = false;
+                    this.attackedIndicatorInstance.SetActive(false);
+                    this.gameController.RemoveAttack();
+                }
+                else
+                {
+                    if (this.gameController.AvailableAttacks > 0)
+                    {
+                        this.Attacked = true;
+                        this.attackedIndicatorInstance.SetActive(true);
+                        this.gameController.AddAttack();
+                    }
+                }
+            }
         }
-	}
+        if (Input.GetMouseButtonDown(1))
+        {
+            if (this.popupInstance.activeSelf)
+            {
+                this.CloseInfoPopup();
+            }
+            else
+            {
+                this.OpenInfoPopup(Input.mousePosition);
+            }
+        }
+    }
 
-	/// <summary>
-	/// Updates the popup display by getting the values of the fields and changing the popup text to display
-	/// the current values of the fields
-	/// </summary>
-	public void UpdatePopupDisplay() {
+    /// <summary>
+    /// Updates the popup display by getting the values of the fields and changing the popup text to display
+    /// the current values of the fields
+    /// </summary>
+    public void UpdatePopupDisplay() {
 		var bindings = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic;
 
 		var fields = new List<FieldInfo> ();

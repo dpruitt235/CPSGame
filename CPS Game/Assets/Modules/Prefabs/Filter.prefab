@@ -80,7 +80,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   popupPrefab: {fileID: 1771340278282874, guid: 20825e5a22a5815499c875070af46bdd,
     type: 2}
+  AttackedIndicator: {fileID: 1026904150380482, guid: 226267e88b0324347a0395412b718ad1,
+    type: 2}
+  InFlowingPump: {fileID: 0}
+  PreviousModule: {fileID: 0}
   Attacked: 0
+  Fill: 1
+  Capacity: 1
 --- !u!212 &212339534534012050
 SpriteRenderer:
   m_ObjectHideFlags: 1
