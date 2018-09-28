@@ -30,17 +30,21 @@ public abstract class Module : MonoBehaviour
 	private Text displayTextContent;
 
     private GameObject attackedIndicatorInstance;
+    private Canvas rootCanvas;
 
 	private void Awake() {
-		this.displayFields = new List<string>();
-        this.displayFields.Add("Attacked");
-        this.displayFields.Add("Fill");
-        this.displayFields.Add("Capacity");
+        this.displayFields = new List<string>
+        {
+            "Attacked",
+            "Fill",
+            "Capacity"
+        };
+
+        rootCanvas = (Canvas)FindObjectOfType(typeof(Canvas));
 
         //Instantiate the popup that displays the display fields
-        this.popupInstance = Instantiate (popupPrefab, popupPrefab.transform.position, popupPrefab.transform.rotation);
-		Canvas c = (Canvas) FindObjectOfType (typeof(Canvas));
-		this.popupInstance.transform.SetParent (c.transform, false);
+        this.popupInstance = Instantiate (this.popupPrefab, this.popupPrefab.transform.position, this.popupPrefab.transform.rotation);
+		this.popupInstance.transform.SetParent(this.rootCanvas.transform, false);
 		var texts = this.popupInstance.GetComponentsInChildren<Text>();
 		if (texts.Length == 2) {
 			this.displayTextContent = texts[1];
@@ -50,7 +54,10 @@ public abstract class Module : MonoBehaviour
 
 		this.CloseInfoPopup();
 
-        this.attackedIndicatorInstance = Instantiate(this.AttackedIndicator, this.transform);
+        this.attackedIndicatorInstance = Instantiate(this.AttackedIndicator, 
+            Camera.main.WorldToScreenPoint(this.transform.position),
+            this.AttackedIndicator.transform.rotation);
+        this.attackedIndicatorInstance.transform.SetParent(GameObject.FindGameObjectWithTag("Attacker").transform);
         this.attackedIndicatorInstance.SetActive(false);
 	}
 
@@ -126,8 +133,8 @@ public abstract class Module : MonoBehaviour
                 if (this.Attacked)
                 {
                     this.Attacked = false;
-                    this.attackedIndicatorInstance.SetActive(false);
                     this.gameController.RemoveAttack();
+                    this.attackedIndicatorInstance.SetActive(false);
                     this.Fix();
                 }
                 else
@@ -182,7 +189,7 @@ public abstract class Module : MonoBehaviour
 	protected void OpenInfoPopup(Vector2 position) {
 		this.CloseInfoPopup();
 		this.UpdatePopupDisplay();
-		RectTransform UITransform = this.popupInstance.GetComponent<RectTransform> ();
+		RectTransform UITransform = this.popupInstance.GetComponent<RectTransform>();
 		UITransform.position = position + new Vector2((UITransform.rect.width / 2), (UITransform.rect.height / 2));
 		this.popupInstance.SetActive(true);
 	}
