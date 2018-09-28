@@ -81,7 +81,7 @@ public abstract class Module : MonoBehaviour, IModule
 	/// Updates the popup display by getting the values of the fields and changing the popup text to display
 	/// the current values of the fields
 	/// </summary>
-	private void UpdatePopupDisplay() {
+	public void UpdatePopupDisplay() {
 		var bindings = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic;
 
 		var fields = new List<FieldInfo> ();
