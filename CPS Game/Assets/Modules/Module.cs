@@ -14,7 +14,7 @@ using UnityEngine.UI;
 public abstract class Module : MonoBehaviour, IModule
 {
     public GameObject popupPrefab;
-
+    
     public bool Attacked = false;
 
     protected List<string> displayFields;
@@ -25,6 +25,7 @@ public abstract class Module : MonoBehaviour, IModule
 	private void Awake() {
 		this.displayFields = new List<string>();
         this.displayFields.Add("Attacked");
+        this.displayFields.Add("HasWater");
 
 		//Instantiate the popup that displays the display fields
 		this.popupInstance = Instantiate (popupPrefab, popupPrefab.transform.position, popupPrefab.transform.rotation);
@@ -42,8 +43,17 @@ public abstract class Module : MonoBehaviour, IModule
 
     public abstract void UpdateModule();
 
-	private void OnMouseOver() {
-		this.OpenInfoPopup(Input.mousePosition);
+	private void OnMouseDown() {
+        if (Input.GetButtonDown("Debug"))
+        {
+            if (this.popupInstance.activeSelf)
+            {
+                this.CloseInfoPopup();
+            } else
+            {
+                this.OpenInfoPopup(Input.mousePosition);
+            }
+        }
 	}
 
 	private void OnMouseExit() {
@@ -79,10 +89,10 @@ public abstract class Module : MonoBehaviour, IModule
 		this.UpdatePopupDisplay();
 		RectTransform UITransform = this.popupInstance.GetComponent<RectTransform> ();
 		UITransform.position = position + new Vector2((UITransform.rect.width / 2), (UITransform.rect.height / 2));
-		this.popupInstance.SetActive (true);
+		this.popupInstance.SetActive(true);
 	}
 
 	protected void CloseInfoPopup() {
-		this.popupInstance.SetActive (false);
+		this.popupInstance.SetActive(false);
 	}
 }
