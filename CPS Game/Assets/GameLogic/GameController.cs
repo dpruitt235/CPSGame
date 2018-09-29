@@ -20,7 +20,7 @@ public class GameController : MonoBehaviour
         }
     } 
 
-    public GameState GameState = GameState.AttackerTurn;
+    public GameState CurrentState = GameState.AttackerTurn;
 
     private void Awake()
     {
@@ -29,14 +29,14 @@ public class GameController : MonoBehaviour
 
     public void EndTurn()
     {
-        if (this.GameState == GameState.AttackerTurn)
+        if (this.CurrentState == GameState.AttackerTurn)
         {
-            this.GameState = GameState.DefenderTurn;
+            this.CurrentState = GameState.DefenderTurn;
             this.AttackerUI.SetActive(false);
         }
         else
         {
-            this.GameState = GameState.AttackerTurn;
+            this.CurrentState = GameState.AttackerTurn;
             this.AttackerUI.SetActive(true);
         }
     }
