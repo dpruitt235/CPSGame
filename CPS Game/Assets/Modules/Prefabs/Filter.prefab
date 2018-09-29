@@ -35,8 +35,8 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1003847374659508}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 766, y: 393.25, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 10, y: 15, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -80,10 +80,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   popupPrefab: {fileID: 1771340278282874, guid: 20825e5a22a5815499c875070af46bdd,
     type: 2}
-  AttackedIndicator: {fileID: 1026904150380482, guid: 226267e88b0324347a0395412b718ad1,
+  AttackedIndicator: {fileID: 1714345752506970, guid: 226267e88b0324347a0395412b718ad1,
     type: 2}
-  InFlowingPump: {fileID: 0}
   PreviousModule: {fileID: 0}
+  InFlowingPump: {fileID: 0}
   Attacked: 0
   Fill: 1
   Capacity: 1

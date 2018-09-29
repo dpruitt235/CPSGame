@@ -427,7 +427,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Reservoir: {fileID: 1285837366}
-  FirstModule: {fileID: 650736938}
 --- !u!4 &282375715
 Transform:
   m_ObjectHideFlags: 0
@@ -1230,6 +1229,11 @@ Prefab:
       propertyPath: InFlowingPump
       value: 
       objectReference: {fileID: 1080607834}
+    - target: {fileID: 114120365281760552, guid: 2a56dd1b1d2660542b025535d7521e6c,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2a56dd1b1d2660542b025535d7521e6c, type: 2}
   m_IsPrefabAsset: 0
@@ -1936,7 +1940,7 @@ GameObject:
   - component: {fileID: 2106539845}
   m_Layer: 5
   m_Name: AttackerUI
-  m_TagString: Untagged
+  m_TagString: Attacker
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
