@@ -16,7 +16,7 @@ public abstract class Module : MonoBehaviour
     public Module PreviousModule;
 
     public Pump InFlowingPump;
-    
+
     public bool Attacked = false;
 
     public int Fill = 0;
@@ -108,17 +108,24 @@ public abstract class Module : MonoBehaviour
     /// <summary>
     /// What to do when the attacker attacks the module
     /// </summary>
-    protected virtual void Attack()
+    public void Attack()
     {
-
+        this.Attacked = true;
+        this.attackedIndicatorInstance.SetActive(true);
+        this.gameController.AddAttack();
     }
 
     /// <summary>
     /// what to do when the module is no longer being attacked
     /// </summary>
-    protected virtual void Fix()
+    public void Fix()
     {
-
+        if (this.Attacked)
+        {
+            this.gameController.RemoveAttack();
+            this.Attacked = false;
+            this.attackedIndicatorInstance.SetActive(false);
+        }
     }
 
     /// <summary>
@@ -132,18 +139,12 @@ public abstract class Module : MonoBehaviour
             {
                 if (this.Attacked)
                 {
-                    this.Attacked = false;
-                    this.gameController.RemoveAttack();
-                    this.attackedIndicatorInstance.SetActive(false);
                     this.Fix();
                 }
                 else
                 {
                     if (this.gameController.AvailableAttacks > 0)
                     {
-                        this.Attacked = true;
-                        this.attackedIndicatorInstance.SetActive(true);
-                        this.gameController.AddAttack();
                         this.Attack();
                     }
                 }
@@ -169,15 +170,28 @@ public abstract class Module : MonoBehaviour
     public void UpdatePopupDisplay() {
 		var bindings = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic;
 
-		var fields = new List<FieldInfo> ();
+		var fields = new List<FieldInfo>();
+        var props = new List<PropertyInfo>();
 		foreach (string fieldName in displayFields) {
-			fields.Add(this.GetType().GetField(fieldName, bindings));
+            var info = this.GetType().GetField(fieldName, bindings);
+            if (info != null)
+            {
+                fields.Add(this.GetType().GetField(fieldName, bindings));
+            }
+            else
+            {
+                props.Add(this.GetType().GetProperty(fieldName, bindings));
+            }
 		}
 
 		var displayStrings = new List<string>();
 		foreach(FieldInfo field in fields) {
 			displayStrings.Add(field.Name + ": " + field.GetValue(this));
 		}
+        foreach(PropertyInfo prop in props)
+        {
+            displayStrings.Add(prop.Name + ": " + prop.GetValue(this, null));
+        }
 
 		this.displayTextContent.text = string.Join("\n", displayStrings.ToArray());
 	}
@@ -200,4 +214,37 @@ public abstract class Module : MonoBehaviour
 	protected void CloseInfoPopup() {
 		this.popupInstance.SetActive(false);
 	}
+
+    /// <summary>
+    /// True if the lhs module appears earlier in the system than the rhs
+    /// </summary>
+    /// <param name="lhs">first module to compare</param>
+    /// <param name="rhs">second module to compare</param>
+    /// <returns></returns>
+    public static bool operator <(Module lhs, Module rhs)
+    {
+        Module currMod = rhs.PreviousModule;
+        while (currMod)
+        {
+            if (currMod == lhs)
+            {
+                return true;
+            }
+
+            currMod = currMod.PreviousModule;
+        }
+
+        return false;
+    }
+
+    /// <summary>
+    /// True if the lhs module appears later in the system than the rhs
+    /// </summary>
+    /// <param name="lhs">first module to compare</param>
+    /// <param name="rhs">second module to compare</param>
+    /// <returns></returns>
+    public static bool operator >(Module lhs, Module rhs)
+    {
+        return (!(lhs < rhs) && lhs != rhs);
+    }
 }
