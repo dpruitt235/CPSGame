@@ -19,20 +19,30 @@ public class Valuation : MonoBehaviour
 
     private LineRenderer lineRenderer;
 
+    private Oracle parentOracle;
+
     private void Awake()
     {
         this.lineRenderer = this.GetComponent<LineRenderer>();
         this.lineRenderer.startWidth = 0.1f;
         this.lineRenderer.endWidth = 0.1f;
+        this.parentOracle = this.GetComponentInParent<Oracle>();
     }
 
     private void OnMouseDown()
     {
+        if (!this.parentOracle.InputActive)
+            return;
+
         this.Deselect();
     }
 
     private void OnMouseUp()
     {
+        if (!this.parentOracle.InputActive)
+            return;
+
+        //determine if it was dragged onto a module, if so, select that module
         RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
         if (hit.collider != null)
         {
@@ -40,7 +50,6 @@ public class Valuation : MonoBehaviour
             if (mod != null)
             {
                 this.Select(mod);
-                Debug.Log(mod.gameObject.name);
             }
             else
             {
@@ -55,6 +64,9 @@ public class Valuation : MonoBehaviour
 
     private void OnMouseDrag()
     {
+        if (!this.parentOracle.InputActive)
+            return;
+
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         this.DrawLine(this.transform.position, mousePos);
     }

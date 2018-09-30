@@ -7,6 +7,8 @@ using UnityEngine;
 /// </summary>
 public class Oracle : MonoBehaviour
 {
+    public bool InputActive = false;
+
     private Valuation firstValuation, secondValuation;
 
     private GameController gameController;
@@ -25,7 +27,7 @@ public class Oracle : MonoBehaviour
     /// </summary>
     public void ApplyRule()
     {
-        if (!this.firstValuation || !this.secondValuation)
+        if (this.firstValuation.CurrentSelection == null || this.secondValuation.CurrentSelection == null)
         {
             Debug.Log("must set both valuations");
             return;
