@@ -547,8 +547,8 @@ MonoBehaviour:
     type: 2}
   OracleSpawnPoint: {x: 7, y: 4}
   AttackerUI: {fileID: 2106539841}
-  NumberOfAttacksLimit: 1
-  NumberOfOracles: 1
+  NumberOfAttacksLimit: 2
+  NumberOfOracles: 2
   GameState: 0
 --- !u!4 &456464533
 Transform:
