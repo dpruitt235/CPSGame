@@ -11,15 +11,32 @@ public class Oracle : MonoBehaviour
 
     private Valuation firstValuation, secondValuation;
 
-    private GameController gameController;
+    private Vector3 screenPoint, offset;
 
     private void Awake()
     {
         var vals = this.GetComponentsInChildren<Valuation>();
         this.firstValuation = vals[0];
         this.secondValuation = vals[1];
+    }
 
-        this.gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
+    private void OnMouseDown()
+    {
+        if (InputActive)
+        {
+            screenPoint = Camera.main.WorldToScreenPoint(gameObject.transform.position);
+            offset = gameObject.transform.position - Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z));
+        }
+    }
+
+    private void OnMouseDrag()
+    {
+        if (InputActive)
+        {
+            Vector3 cursorPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
+            Vector3 cursorPosition = Camera.main.ScreenToWorldPoint(cursorPoint) + offset;
+            transform.position = cursorPosition;
+        }
     }
 
     /// <summary>
