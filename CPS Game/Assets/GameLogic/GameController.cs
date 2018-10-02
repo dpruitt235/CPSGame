@@ -8,16 +8,25 @@ using UnityEngine;
 public class GameController : MonoBehaviour
 {
     public WaterFlowController WaterFlowController;
+    public SceneLoader SceneLoader;
 
     public GameObject OraclePrefab;
     public Vector2 OracleSpawnPoint;
 
     public GameObject AttackerUI;
 
+    public Reservoir Reservoir;
+
     public int NumberOfAttacksLimit = 1;
     public int NumberOfOracles = 1;
 
     private int NumAttacks = 0;
+
+    private int Turn = 0;
+
+    public int ReservoirLimit = 10;
+    public int TurnLimit = 15;
+
     public int AvailableAttacks {
         get {
             return this.NumberOfAttacksLimit - NumAttacks;
@@ -30,7 +39,8 @@ public class GameController : MonoBehaviour
 
     private void Awake()
     {
-        this.WaterFlowController.StartWaterFlow(0.1f);
+        //this.WaterFlowController.StartWaterFlow(0.1f);
+        Results.ReservoirLimit = ReservoirLimit;
         this.oracles = new List<Oracle>();
     }
 
@@ -60,6 +70,20 @@ public class GameController : MonoBehaviour
             {
                 o.InputActive = false;
                 o.ApplyRule();
+            }
+
+            this.WaterFlowController.TickModules();
+
+            if (Reservoir.Fill >= ReservoirLimit)
+            {
+                Results.ReservoirFill = Reservoir.Fill;
+                this.SceneLoader.LoadNextScene();
+            }
+
+            if (++Turn > TurnLimit)
+            {
+                Results.ReservoirFill = Reservoir.Fill;
+                this.SceneLoader.LoadNextScene();
             }
         }
     }
