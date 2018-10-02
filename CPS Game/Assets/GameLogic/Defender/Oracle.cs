@@ -36,6 +36,8 @@ public class Oracle : MonoBehaviour
             Vector3 cursorPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
             Vector3 cursorPosition = Camera.main.ScreenToWorldPoint(cursorPoint) + offset;
             transform.position = cursorPosition;
+            this.firstValuation.UpdateLine();
+            this.secondValuation.UpdateLine();
         }
     }
 

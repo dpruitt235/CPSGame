@@ -21,6 +21,14 @@ public class Valuation : MonoBehaviour
 
     private Oracle parentOracle;
 
+    public void UpdateLine()
+    {
+        if (this.lineRenderer.enabled && this.module)
+        {
+            this.DrawLine(this.transform.position, this.module.transform.position);
+        }
+    }
+
     private void Awake()
     {
         this.lineRenderer = this.GetComponent<LineRenderer>();
