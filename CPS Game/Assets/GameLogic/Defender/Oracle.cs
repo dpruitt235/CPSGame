@@ -15,6 +15,9 @@ public class Oracle : MonoBehaviour
 
     private Vector3 screenPoint, offset;
 
+    private Vector2 minScreen = new Vector2(0, 0);
+    private Vector2 maxScreen = new Vector2(Screen.width, Screen.height);
+
     private void Awake()
     {
         var vals = this.GetComponentsInChildren<Valuation>();
@@ -37,6 +40,27 @@ public class Oracle : MonoBehaviour
         {
             Vector3 cursorPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
             Vector3 cursorPosition = Camera.main.ScreenToWorldPoint(cursorPoint) + offset;
+
+            Vector2 minPosition = Camera.main.ScreenToWorldPoint(minScreen);
+            Vector2 maxPosition = Camera.main.ScreenToWorldPoint(maxScreen);
+
+            //owl screen bounds 
+            if ( (cursorPosition.x) < minPosition.x)
+            {
+                cursorPosition.x = minPosition.x;
+            }else if(cursorPosition.x > maxPosition.x)
+            {
+                cursorPosition.x = maxPosition.x;
+            }
+
+            if (cursorPosition.y < minPosition.y)
+            {
+                cursorPosition.y = minPosition.y;
+            }else if(cursorPosition.y > maxPosition.y)
+            {
+                cursorPosition.y = maxPosition.y;
+            }
+
             transform.position = cursorPosition;
             this.firstValuation.UpdateLine();
             this.secondValuation.UpdateLine();
