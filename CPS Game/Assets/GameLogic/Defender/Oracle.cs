@@ -7,7 +7,9 @@ using UnityEngine;
 /// </summary>
 public class Oracle : MonoBehaviour
 {
+    public GameObject FloatingTextPreFab;
     public bool InputActive = false;
+    public string messageText = "Stopped an attack!";
 
     private Valuation firstValuation, secondValuation;
 
@@ -92,6 +94,13 @@ public class Oracle : MonoBehaviour
         if (successfulDefense)
         {
             mods.ForEach(m => m.Fix());
+            if(FloatingTextPreFab !=null)
+                ShowFloatingText(messageText);
         }
+    }
+    void ShowFloatingText(string message)
+    {
+        var go = Instantiate(FloatingTextPreFab, transform.position, Quaternion.identity, transform);
+        go.GetComponent<TextMesh>().text = message;
     }
 }
