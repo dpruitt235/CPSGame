@@ -61,7 +61,7 @@ public abstract class Module : MonoBehaviour
         this.attackedIndicatorInstance.SetActive(false);
 	}
 
-    private void Start()
+    protected void Start()
     {
         this.gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
     }
