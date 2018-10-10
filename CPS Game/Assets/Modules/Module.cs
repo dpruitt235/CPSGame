@@ -112,7 +112,7 @@ public abstract class Module : MonoBehaviour
     {
         this.Attacked = true;
         this.attackedIndicatorInstance.SetActive(true);
-        this.gameController.AddAttack();
+        this.gameController.NumAvailableAttacks--;
     }
 
     /// <summary>
@@ -122,7 +122,6 @@ public abstract class Module : MonoBehaviour
     {
         if (this.Attacked)
         {
-            this.gameController.RemoveAttack();
             this.Attacked = false;
             this.attackedIndicatorInstance.SetActive(false);
         }
@@ -139,11 +138,12 @@ public abstract class Module : MonoBehaviour
             {
                 if (this.Attacked)
                 {
+                    this.gameController.NumAvailableAttacks++;
                     this.Fix();
                 }
                 else
                 {
-                    if (this.gameController.AvailableAttacks > 0)
+                    if (this.gameController.NumAvailableAttacks > 0)
                     {
                         this.Attack();
                     }

@@ -421,8 +421,9 @@ MonoBehaviour:
   OracleSpawnPoint: {x: 7, y: 4}
   AttackerUI: {fileID: 2106539841}
   Reservoir: {fileID: 1285837366}
-  NumberOfAttacksLimit: 2
+  NumberOfAttacksPerTurn: 1
   NumberOfOracles: 2
+  NumAvailableAttacks: 0
   ReservoirLimit: 10
   TurnLimit: 15
   GameState: 0

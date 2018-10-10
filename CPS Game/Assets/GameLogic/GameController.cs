@@ -17,21 +17,15 @@ public class GameController : MonoBehaviour
 
     public Reservoir Reservoir;
 
-    public int NumberOfAttacksLimit = 1;
+    public int NumberOfAttacksPerTurn = 1;
     public int NumberOfOracles = 1;
-
-    private int NumAttacks = 0;
+    public int NumAvailableAttacks { get; set; }
 
     private int Turn = 0;
 
     public int ReservoirLimit = 10;
     public int TurnLimit = 15;
 
-    public int AvailableAttacks {
-        get {
-            return this.NumberOfAttacksLimit - NumAttacks;
-        }
-    } 
 
     public GameState GameState = GameState.AttackerTurn;
 
@@ -39,7 +33,7 @@ public class GameController : MonoBehaviour
 
     private void Awake()
     {
-        //this.WaterFlowController.StartWaterFlow(0.1f);
+        this.NumAvailableAttacks = this.NumberOfAttacksPerTurn;
         Results.ReservoirLimit = ReservoirLimit;
         this.oracles = new List<Oracle>();
     }
@@ -64,6 +58,7 @@ public class GameController : MonoBehaviour
         else
         {
             this.GameState = GameState.AttackerTurn;
+            this.NumAvailableAttacks = this.NumberOfAttacksPerTurn;
 
             this.AttackerUI.SetActive(true);
             foreach (Oracle o in this.oracles)
@@ -86,15 +81,5 @@ public class GameController : MonoBehaviour
                 this.SceneLoader.LoadNextScene();
             }
         }
-    }
-
-    public void RemoveAttack()
-    {
-        this.NumAttacks--;
-    }
-
-    public void AddAttack()
-    {
-        this.NumAttacks++;
     }
 }
