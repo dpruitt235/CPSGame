@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 /// <summary>
 /// The Oracle has two valuations that, each can point at a module.  The Oracle uses these valuations to fix modules.
@@ -18,11 +19,22 @@ public class Oracle : MonoBehaviour
     private Vector2 minScreen = new Vector2(0, 0);
     private Vector2 maxScreen = new Vector2(Screen.width, Screen.height);
 
+    private int count = 0; // used for testing right mouse clicks
+
     private void Awake()
     {
         var vals = this.GetComponentsInChildren<Valuation>();
         this.firstValuation = vals[0];
         this.secondValuation = vals[1];
+    }
+
+    private void OnMouseOver()
+    {
+        if (Input.GetMouseButtonDown(1))
+        {
+            ShowFloatingText("RIGHT CLICK: " + count);
+            this.InputActive = false; //makes the owl unmoveable
+        }
     }
 
     private void OnMouseDown()
@@ -33,6 +45,8 @@ public class Oracle : MonoBehaviour
             offset = gameObject.transform.position - Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z));
         }
     }
+
+    
 
     private void OnMouseDrag()
     {
