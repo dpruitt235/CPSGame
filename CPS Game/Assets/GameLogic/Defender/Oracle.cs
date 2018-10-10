@@ -33,7 +33,11 @@ public class Oracle : MonoBehaviour
         if (Input.GetMouseButtonDown(1))
         {
             ShowFloatingText("RIGHT CLICK: " + count);
-            this.InputActive = false; //makes the owl unmoveable
+            this.InputActive = false; // makes the owl unmoveable
+        }
+        if(Input.GetMouseButton(0) && Input.GetMouseButton(1))
+        {
+            this.InputActive = true; // makes the owl moveable again
         }
     }
 
