@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 /// <summary>
 /// Controls whose turn it is, the actions available to the players, and other game logic
@@ -16,6 +17,9 @@ public class GameController : MonoBehaviour
     public GameObject AttackerUI;
 
     public Reservoir Reservoir;
+
+    public Text TurnCounter;
+    public Text ReservoirCounter;
 
     public int NumberOfAttacksPerTurn = 1;
     public int NumberOfOracles = 1;
@@ -75,11 +79,13 @@ public class GameController : MonoBehaviour
                 this.SceneLoader.LoadNextScene();
             }
 
-            if (++Turn > TurnLimit)
+            if (++Turn >= TurnLimit)
             {
                 Results.ReservoirFill = Reservoir.Fill;
                 this.SceneLoader.LoadNextScene();
             }
+            ReservoirCounter.text = Reservoir.Fill.ToString();
+            TurnCounter.text = "Turn: " + (Turn+1);
         }
     }
 }
