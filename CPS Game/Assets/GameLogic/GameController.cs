@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 /// <summary>
 /// Controls whose turn it is, the actions available to the players, and other game logic
@@ -17,21 +18,18 @@ public class GameController : MonoBehaviour
 
     public Reservoir Reservoir;
 
-    public int NumberOfAttacksLimit = 1;
-    public int NumberOfOracles = 1;
+    public Text TurnCounter;
+    public Text ReservoirCounter;
 
-    private int NumAttacks = 0;
+    public int NumberOfAttacksPerTurn = 1;
+    public int NumberOfOracles = 1;
+    public int NumAvailableAttacks { get; set; }
 
     private int Turn = 0;
 
     public int ReservoirLimit = 10;
     public int TurnLimit = 15;
 
-    public int AvailableAttacks {
-        get {
-            return this.NumberOfAttacksLimit - NumAttacks;
-        }
-    } 
 
     public GameState GameState = GameState.AttackerTurn;
 
@@ -39,7 +37,7 @@ public class GameController : MonoBehaviour
 
     private void Awake()
     {
-        //this.WaterFlowController.StartWaterFlow(0.1f);
+        this.NumAvailableAttacks = this.NumberOfAttacksPerTurn;
         Results.ReservoirLimit = ReservoirLimit;
         this.oracles = new List<Oracle>();
     }
@@ -64,6 +62,7 @@ public class GameController : MonoBehaviour
         else
         {
             this.GameState = GameState.AttackerTurn;
+            this.NumAvailableAttacks = this.NumberOfAttacksPerTurn;
 
             this.AttackerUI.SetActive(true);
             foreach (Oracle o in this.oracles)
@@ -80,21 +79,13 @@ public class GameController : MonoBehaviour
                 this.SceneLoader.LoadNextScene();
             }
 
-            if (++Turn > TurnLimit)
+            if (++Turn >= TurnLimit)
             {
                 Results.ReservoirFill = Reservoir.Fill;
                 this.SceneLoader.LoadNextScene();
             }
+            ReservoirCounter.text = Reservoir.Fill.ToString();
+            TurnCounter.text = "Turn: " + (Turn+1);
         }
-    }
-
-    public void RemoveAttack()
-    {
-        this.NumAttacks--;
-    }
-
-    public void AddAttack()
-    {
-        this.NumAttacks++;
     }
 }
