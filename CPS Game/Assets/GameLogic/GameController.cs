@@ -21,6 +21,10 @@ public class GameController : MonoBehaviour
     public Text TurnCounter;
     public Text ReservoirCounter;
 
+    public GameObject ScreenCover;
+    public GameObject GameUI;
+    public Text TurnText;
+
     public int NumberOfAttacksPerTurn = 1;
     public int NumberOfOracles = 1;
     public int NumAvailableAttacks { get; set; }
@@ -40,6 +44,7 @@ public class GameController : MonoBehaviour
         this.NumAvailableAttacks = this.NumberOfAttacksPerTurn;
         Results.ReservoirLimit = ReservoirLimit;
         this.oracles = new List<Oracle>();
+        TurnText.gameObject.SetActive(false);
     }
 
     private void Start()
@@ -58,6 +63,8 @@ public class GameController : MonoBehaviour
             this.oracles.ForEach(o => o.InputActive = true);
             this.GameState = GameState.DefenderTurn;
             this.AttackerUI.SetActive(false);
+            TurnText.text = "Defender's Turn";
+            TurnText.color = new Color(0, .5F, 1F);
         }
         else
         {
@@ -86,6 +93,24 @@ public class GameController : MonoBehaviour
             }
             ReservoirCounter.text = Reservoir.Fill.ToString();
             TurnCounter.text = "Turn: " + (Turn+1);
+            TurnText.text = "Attacker's Turn";
+            TurnText.color = new Color(1F, 0, 0);
         }
+
+        StartCoroutine(WaitForClick());
+    }
+
+    IEnumerator WaitForClick()
+    {
+        ScreenCover.transform.localPosition -= Vector3.up * 15;
+        GameUI.SetActive(false);
+        TurnText.gameObject.SetActive(true);
+
+        yield return new WaitWhile(() => !Input.GetMouseButtonDown(0));
+
+        TurnText.gameObject.SetActive(false);
+        GameUI.SetActive(true);
+        ScreenCover.transform.localPosition += Vector3.up * 15;
     }
 }
+

@@ -20,5 +20,10 @@ public class TextController : MonoBehaviour {
 
         Reservoir.transform.localPosition += Vector3.up * Results.ReservoirFill/6F;
         Reservoir.transform.localScale += Vector3.up * Results.ReservoirFill/3F;
+
+        if (Results.ReservoirFill == 0)
+        {
+            Reservoir.transform.localPosition += Vector3.up * -15;
+        }
     }
 }
