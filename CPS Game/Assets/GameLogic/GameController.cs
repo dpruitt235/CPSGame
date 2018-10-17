@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -34,6 +35,11 @@ public class GameController : MonoBehaviour
     public int ReservoirLimit = 10;
     public int TurnLimit = 15;
 
+    public Text TurnTimer;
+    private DateTime ActiveTurnTimer;
+    private DateTime EndTurnTimer;
+    private bool ActiveTurn;
+
 
     public GameState GameState = GameState.AttackerTurn;
 
@@ -54,10 +60,16 @@ public class GameController : MonoBehaviour
             var newOracle = Instantiate(this.OraclePrefab, new Vector3(this.OracleSpawnPoint.x, this.OracleSpawnPoint.y + (-i * 2), -9), Quaternion.identity);
             oracles.Add(newOracle.GetComponent<Oracle>());
         }
+
+        ActiveTurnTimer = DateTime.Now;
+        EndTurnTimer = DateTime.Now.AddSeconds(15);
+        ActiveTurn = true;
     }
 
     public void EndTurn()
     {
+        ActiveTurn = false;
+
         if (this.GameState == GameState.AttackerTurn)
         {
             this.oracles.ForEach(o => o.InputActive = true);
@@ -100,17 +112,37 @@ public class GameController : MonoBehaviour
         StartCoroutine(WaitForClick());
     }
 
+    void Update()
+    {
+        if (ActiveTurn)
+        {
+            ActiveTurnTimer = DateTime.Now;
+            TurnTimer.text = "Time left: " + (EndTurnTimer.Second - ActiveTurnTimer.Second).ToString();
+
+            if (ActiveTurnTimer > EndTurnTimer)
+            {
+                EndTurn();   
+            }
+        }
+
+    }
+
     IEnumerator WaitForClick()
     {
         ScreenCover.transform.localPosition -= Vector3.up * 15;
         GameUI.SetActive(false);
         TurnText.gameObject.SetActive(true);
+        TurnTimer.gameObject.SetActive(false);
 
         yield return new WaitWhile(() => !Input.GetMouseButtonDown(0));
 
         TurnText.gameObject.SetActive(false);
+        TurnTimer.gameObject.SetActive(true);
         GameUI.SetActive(true);
         ScreenCover.transform.localPosition += Vector3.up * 15;
+
+        ActiveTurn = true;
+        EndTurnTimer = DateTime.Now.AddSeconds(15);
     }
 }
 
