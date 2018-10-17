@@ -710,6 +710,11 @@ Prefab:
       propertyPath: overFlowSprite
       value: 
       objectReference: {fileID: 1806581912}
+    - target: {fileID: 114535725795618874, guid: 6f722e7165305454eb124ba82c0ef200,
+        type: 2}
+      propertyPath: TankCapacity
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6f722e7165305454eb124ba82c0ef200, type: 2}
   m_IsPrefabAsset: 0
