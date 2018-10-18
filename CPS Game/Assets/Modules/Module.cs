@@ -36,6 +36,16 @@ public abstract class Module : MonoBehaviour
     private GameObject attackedIndicatorInstance;
     private Canvas rootCanvas;
 
+    public virtual bool IsFilter()
+    {
+        return false;
+    }
+
+    public virtual bool IsPump()
+    {
+        return false;
+    }
+
 	private void Awake() {
         this.displayFields = new List<string>
         {

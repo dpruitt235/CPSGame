@@ -47,7 +47,7 @@ public class GameController : MonoBehaviour
         TurnText.gameObject.SetActive(false);
     }
 
-    private void Start()
+    protected void Start()
     {
         for (int i = 0; i < this.NumberOfOracles; i++)
         {

@@ -30,4 +30,9 @@ public class Pump : Module
         this.displayFields.Add("On");
         base.Start();
     }
+
+    public override bool IsPump()
+    {
+        return true;
+    }
 }
