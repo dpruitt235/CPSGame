@@ -114,7 +114,7 @@ public class GameController : MonoBehaviour
 
     void Update()
     {
-        if (ActiveTurn)
+        if (TurnTimer != null && ActiveTurn)  //enables game to be run without a timer
         {
             ActiveTurnTimer = DateTime.Now;
             TurnTimer.text = "Time left: " + (EndTurnTimer.Second - ActiveTurnTimer.Second).ToString();
