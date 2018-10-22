@@ -132,12 +132,17 @@ public class GameController : MonoBehaviour
         ScreenCover.transform.localPosition -= Vector3.up * 15;
         GameUI.SetActive(false);
         TurnText.gameObject.SetActive(true);
-        TurnTimer.gameObject.SetActive(false);
-
+        if (TurnTimer != null)
+        {
+            TurnTimer.gameObject.SetActive(false);
+        }
         yield return new WaitWhile(() => !Input.GetMouseButtonDown(0));
 
         TurnText.gameObject.SetActive(false);
-        TurnTimer.gameObject.SetActive(true);
+        if (TurnTimer != null)
+        {
+            TurnTimer.gameObject.SetActive(true);
+        }
         GameUI.SetActive(true);
         ScreenCover.transform.localPosition += Vector3.up * 15;
 
