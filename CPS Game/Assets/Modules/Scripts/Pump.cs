@@ -25,9 +25,14 @@ public class Pump : Module
 
     private bool on = true;
 
-    private void Start()
+    private new void Start()
     {
         this.displayFields.Add("On");
         base.Start();
+    }
+
+    public override bool IsPump()
+    {
+        return true;
     }
 }
