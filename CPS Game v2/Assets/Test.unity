@@ -234,7 +234,23 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 114127325393874920, guid: 9c98cec72dcc6484b9854215ff2db438,
+        type: 2}
+      propertyPath: PreviousModule
+      value: 
+      objectReference: {fileID: 1774918625}
+    - target: {fileID: 114127325393874920, guid: 9c98cec72dcc6484b9854215ff2db438,
+        type: 2}
+      propertyPath: InFlowingPump
+      value: 
+      objectReference: {fileID: 1849263467}
+    - target: {fileID: 114441962571396894, guid: 9c98cec72dcc6484b9854215ff2db438,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 114441962571396894, guid: 9c98cec72dcc6484b9854215ff2db438, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: 9c98cec72dcc6484b9854215ff2db438, type: 2}
   m_IsPrefabAsset: 0
 --- !u!4 &176067067 stripped
@@ -304,6 +320,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &210664560 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114698971064820580, guid: 2c0771878fa98c542813384f180890d5,
+    type: 2}
+  m_PrefabInternal: {fileID: 650079317}
+  m_Script: {fileID: 11500000, guid: 813216393fec7684896edcfce3299490, type: 3}
+--- !u!114 &220058000 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114698971064820580, guid: 2c0771878fa98c542813384f180890d5,
+    type: 2}
+  m_PrefabInternal: {fileID: 1758344961}
+  m_Script: {fileID: 11500000, guid: 813216393fec7684896edcfce3299490, type: 3}
 --- !u!1 &256881649
 GameObject:
   m_ObjectHideFlags: 0
@@ -432,6 +460,24 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 256881649}
   m_CullTransparentMesh: 0
+--- !u!114 &264402965 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114299726853037410, guid: 6fb95b00634533e4aabdc54207e8830e,
+    type: 2}
+  m_PrefabInternal: {fileID: 1882966618}
+  m_Script: {fileID: 11500000, guid: 749d8a997e56b074abc561ee403ebf98, type: 3}
+--- !u!114 &277915444 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114635232617175116, guid: ecb9ed18472e91e4a9841f3279372fb3,
+    type: 2}
+  m_PrefabInternal: {fileID: 1183407248}
+  m_Script: {fileID: 11500000, guid: 30816d10136ef274c8a70766d85144b7, type: 3}
+--- !u!114 &483808716 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114635232617175116, guid: ecb9ed18472e91e4a9841f3279372fb3,
+    type: 2}
+  m_PrefabInternal: {fileID: 1807835888}
+  m_Script: {fileID: 11500000, guid: 30816d10136ef274c8a70766d85144b7, type: 3}
 --- !u!1 &534669902
 GameObject:
   m_ObjectHideFlags: 0
@@ -534,6 +580,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4099675452661254, guid: ecb9ed18472e91e4a9841f3279372fb3,
     type: 2}
   m_PrefabInternal: {fileID: 646747176}
+--- !u!114 &588473679 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114635232617175116, guid: ecb9ed18472e91e4a9841f3279372fb3,
+    type: 2}
+  m_PrefabInternal: {fileID: 832292917}
+  m_Script: {fileID: 11500000, guid: 30816d10136ef274c8a70766d85144b7, type: 3}
 --- !u!1001 &646747176
 Prefab:
   m_ObjectHideFlags: 0
@@ -576,6 +628,25 @@ Prefab:
     - target: {fileID: 1612925740482596, guid: ecb9ed18472e91e4a9841f3279372fb3, type: 2}
       propertyPath: m_Name
       value: Pipe5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114635232617175116, guid: ecb9ed18472e91e4a9841f3279372fb3,
+        type: 2}
+      propertyPath: PreviousModule
+      value: 
+      objectReference: {fileID: 210664560}
+    - target: {fileID: 114635232617175116, guid: ecb9ed18472e91e4a9841f3279372fb3,
+        type: 2}
+      propertyPath: InFlowingPump
+      value: 
+      objectReference: {fileID: 1127941340}
+    - target: {fileID: 1354026458969526, guid: ecb9ed18472e91e4a9841f3279372fb3, type: 2}
+      propertyPath: m_Name
+      value: Sensor5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114201832724189754, guid: ecb9ed18472e91e4a9841f3279372fb3,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ecb9ed18472e91e4a9841f3279372fb3, type: 2}
@@ -639,9 +710,25 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 1.3872005
       objectReference: {fileID: 0}
+    - target: {fileID: 114698971064820580, guid: 2c0771878fa98c542813384f180890d5,
+        type: 2}
+      propertyPath: PreviousModule
+      value: 
+      objectReference: {fileID: 277915444}
+    - target: {fileID: 114698971064820580, guid: 2c0771878fa98c542813384f180890d5,
+        type: 2}
+      propertyPath: InFlowingPump
+      value: 
+      objectReference: {fileID: 1127941340}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2c0771878fa98c542813384f180890d5, type: 2}
   m_IsPrefabAsset: 0
+--- !u!114 &687576233 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114635232617175116, guid: ecb9ed18472e91e4a9841f3279372fb3,
+    type: 2}
+  m_PrefabInternal: {fileID: 646747176}
+  m_Script: {fileID: 11500000, guid: 30816d10136ef274c8a70766d85144b7, type: 3}
 --- !u!1 &689642305
 GameObject:
   m_ObjectHideFlags: 0
@@ -731,6 +818,25 @@ Prefab:
       propertyPath: m_Name
       value: Pipe3
       objectReference: {fileID: 0}
+    - target: {fileID: 114635232617175116, guid: ecb9ed18472e91e4a9841f3279372fb3,
+        type: 2}
+      propertyPath: PreviousModule
+      value: 
+      objectReference: {fileID: 1367751106}
+    - target: {fileID: 114635232617175116, guid: ecb9ed18472e91e4a9841f3279372fb3,
+        type: 2}
+      propertyPath: InFlowingPump
+      value: 
+      objectReference: {fileID: 1127941340}
+    - target: {fileID: 1354026458969526, guid: ecb9ed18472e91e4a9841f3279372fb3, type: 2}
+      propertyPath: m_Name
+      value: Sensor3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114201832724189754, guid: ecb9ed18472e91e4a9841f3279372fb3,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ecb9ed18472e91e4a9841f3279372fb3, type: 2}
   m_IsPrefabAsset: 0
@@ -773,6 +879,16 @@ Prefab:
       propertyPath: m_RootOrder
       value: 13
       objectReference: {fileID: 0}
+    - target: {fileID: 114291324350689874, guid: 764b2fb4f37fd534bb78d2cc22e522bd,
+        type: 2}
+      propertyPath: PreviousModule
+      value: 
+      objectReference: {fileID: 483808716}
+    - target: {fileID: 114291324350689874, guid: 764b2fb4f37fd534bb78d2cc22e522bd,
+        type: 2}
+      propertyPath: InFlowingPump
+      value: 
+      objectReference: {fileID: 1849263467}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 764b2fb4f37fd534bb78d2cc22e522bd, type: 2}
   m_IsPrefabAsset: 0
@@ -831,9 +947,29 @@ Prefab:
       propertyPath: m_Name
       value: Pipe1
       objectReference: {fileID: 0}
+    - target: {fileID: 114635232617175116, guid: ecb9ed18472e91e4a9841f3279372fb3,
+        type: 2}
+      propertyPath: InFlowingPump
+      value: 
+      objectReference: {fileID: 1127941340}
+    - target: {fileID: 1354026458969526, guid: ecb9ed18472e91e4a9841f3279372fb3, type: 2}
+      propertyPath: m_Name
+      value: Sensor1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114201832724189754, guid: ecb9ed18472e91e4a9841f3279372fb3,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ecb9ed18472e91e4a9841f3279372fb3, type: 2}
   m_IsPrefabAsset: 0
+--- !u!114 &854854617 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114635232617175116, guid: ecb9ed18472e91e4a9841f3279372fb3,
+    type: 2}
+  m_PrefabInternal: {fileID: 2067816601}
+  m_Script: {fileID: 11500000, guid: 30816d10136ef274c8a70766d85144b7, type: 3}
 --- !u!4 &894097827 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4099675452661254, guid: ecb9ed18472e91e4a9841f3279372fb3,
@@ -1011,10 +1147,16 @@ MonoBehaviour:
   OracleSpawnPoint: {x: 2, y: 2, z: 0}
   AttackerUI: {fileID: 1402154358}
   Reservoir: {fileID: 1177941902}
-  NumberOfAttacksLimit: 2
+  TurnCounter: {fileID: 0}
+  ReservoirCounter: {fileID: 0}
+  ScreenCover: {fileID: 0}
+  GameUI: {fileID: 0}
+  TurnText: {fileID: 0}
+  NumberOfAttacksPerTurn: 1
   NumberOfOracles: 2
   ReservoirLimit: 10
   TurnLimit: 15
+  TurnTimer: {fileID: 0}
   GameState: 1
 --- !u!4 &995454138
 Transform:
@@ -1120,7 +1262,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1065326964}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 30816d10136ef274c8a70766d85144b7, type: 3}
   m_Name: 
@@ -1131,12 +1273,17 @@ MonoBehaviour:
   InFlowingPump: {fileID: 0}
   Attacked: 0
   Fill: 0
-  Capacity: 1
 --- !u!4 &1065326971 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4099675452661254, guid: ecb9ed18472e91e4a9841f3279372fb3,
     type: 2}
   m_PrefabInternal: {fileID: 832292917}
+--- !u!114 &1127941340 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114127325393874920, guid: 9c98cec72dcc6484b9854215ff2db438,
+    type: 2}
+  m_PrefabInternal: {fileID: 1655649999}
+  m_Script: {fileID: 11500000, guid: 608c7bdfd549cc648a671380e587ca9e, type: 3}
 --- !u!4 &1144286288 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4931362457983008, guid: 9c98cec72dcc6484b9854215ff2db438,
@@ -1213,6 +1360,25 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114635232617175116, guid: ecb9ed18472e91e4a9841f3279372fb3,
+        type: 2}
+      propertyPath: PreviousModule
+      value: 
+      objectReference: {fileID: 264402965}
+    - target: {fileID: 114635232617175116, guid: ecb9ed18472e91e4a9841f3279372fb3,
+        type: 2}
+      propertyPath: InFlowingPump
+      value: 
+      objectReference: {fileID: 1127941340}
+    - target: {fileID: 1354026458969526, guid: ecb9ed18472e91e4a9841f3279372fb3, type: 2}
+      propertyPath: m_Name
+      value: Sensor6
+      objectReference: {fileID: 0}
+    - target: {fileID: 114201832724189754, guid: ecb9ed18472e91e4a9841f3279372fb3,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ecb9ed18472e91e4a9841f3279372fb3, type: 2}
   m_IsPrefabAsset: 0
@@ -1274,6 +1440,25 @@ Prefab:
     - target: {fileID: 4099675452661254, guid: ecb9ed18472e91e4a9841f3279372fb3, type: 2}
       propertyPath: m_LocalScale.z
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114635232617175116, guid: ecb9ed18472e91e4a9841f3279372fb3,
+        type: 2}
+      propertyPath: PreviousModule
+      value: 
+      objectReference: {fileID: 220058000}
+    - target: {fileID: 114635232617175116, guid: ecb9ed18472e91e4a9841f3279372fb3,
+        type: 2}
+      propertyPath: InFlowingPump
+      value: 
+      objectReference: {fileID: 1127941340}
+    - target: {fileID: 1354026458969526, guid: ecb9ed18472e91e4a9841f3279372fb3, type: 2}
+      propertyPath: m_Name
+      value: Sensor4
+      objectReference: {fileID: 0}
+    - target: {fileID: 114201832724189754, guid: ecb9ed18472e91e4a9841f3279372fb3,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ecb9ed18472e91e4a9841f3279372fb3, type: 2}
@@ -1375,6 +1560,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4396514659626052, guid: 2c0771878fa98c542813384f180890d5,
     type: 2}
   m_PrefabInternal: {fileID: 650079317}
+--- !u!114 &1367751106 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114698971064820580, guid: 2c0771878fa98c542813384f180890d5,
+    type: 2}
+  m_PrefabInternal: {fileID: 2007097121}
+  m_Script: {fileID: 11500000, guid: 813216393fec7684896edcfce3299490, type: 3}
 --- !u!1 &1402154358
 GameObject:
   m_ObjectHideFlags: 0
@@ -1604,6 +1795,16 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114441962571396894, guid: 9c98cec72dcc6484b9854215ff2db438,
+        type: 2}
+      propertyPath: PreviousModule
+      value: 
+      objectReference: {fileID: 588473679}
+    - target: {fileID: 114441962571396894, guid: 9c98cec72dcc6484b9854215ff2db438,
+        type: 2}
+      propertyPath: InFlowingPump
+      value: 
+      objectReference: {fileID: 1127941340}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9c98cec72dcc6484b9854215ff2db438, type: 2}
   m_IsPrefabAsset: 0
@@ -1694,9 +1895,25 @@ Prefab:
       propertyPath: m_LocalScale.x
       value: 1.1400199
       objectReference: {fileID: 0}
+    - target: {fileID: 114698971064820580, guid: 2c0771878fa98c542813384f180890d5,
+        type: 2}
+      propertyPath: PreviousModule
+      value: 
+      objectReference: {fileID: 1913633097}
+    - target: {fileID: 114698971064820580, guid: 2c0771878fa98c542813384f180890d5,
+        type: 2}
+      propertyPath: InFlowingPump
+      value: 
+      objectReference: {fileID: 1127941340}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2c0771878fa98c542813384f180890d5, type: 2}
   m_IsPrefabAsset: 0
+--- !u!114 &1774918625 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114635232617175116, guid: ecb9ed18472e91e4a9841f3279372fb3,
+    type: 2}
+  m_PrefabInternal: {fileID: 1183373155}
+  m_Script: {fileID: 11500000, guid: 30816d10136ef274c8a70766d85144b7, type: 3}
 --- !u!1001 &1807835888
 Prefab:
   m_ObjectHideFlags: 0
@@ -1740,6 +1957,25 @@ Prefab:
       propertyPath: m_Name
       value: Pipe7
       objectReference: {fileID: 0}
+    - target: {fileID: 114635232617175116, guid: ecb9ed18472e91e4a9841f3279372fb3,
+        type: 2}
+      propertyPath: PreviousModule
+      value: 
+      objectReference: {fileID: 1849263467}
+    - target: {fileID: 114635232617175116, guid: ecb9ed18472e91e4a9841f3279372fb3,
+        type: 2}
+      propertyPath: InFlowingPump
+      value: 
+      objectReference: {fileID: 1849263467}
+    - target: {fileID: 1354026458969526, guid: ecb9ed18472e91e4a9841f3279372fb3, type: 2}
+      propertyPath: m_Name
+      value: Sensor7
+      objectReference: {fileID: 0}
+    - target: {fileID: 114201832724189754, guid: ecb9ed18472e91e4a9841f3279372fb3,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ecb9ed18472e91e4a9841f3279372fb3, type: 2}
   m_IsPrefabAsset: 0
@@ -1748,6 +1984,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4099675452661254, guid: ecb9ed18472e91e4a9841f3279372fb3,
     type: 2}
   m_PrefabInternal: {fileID: 715248612}
+--- !u!114 &1849263467 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114127325393874920, guid: 9c98cec72dcc6484b9854215ff2db438,
+    type: 2}
+  m_PrefabInternal: {fileID: 174817620}
+  m_Script: {fileID: 11500000, guid: 608c7bdfd549cc648a671380e587ca9e, type: 3}
 --- !u!1001 &1882966618
 Prefab:
   m_ObjectHideFlags: 0
@@ -1787,9 +2029,35 @@ Prefab:
       propertyPath: m_RootOrder
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 114299726853037410, guid: 6fb95b00634533e4aabdc54207e8830e,
+        type: 2}
+      propertyPath: PreviousModule
+      value: 
+      objectReference: {fileID: 687576233}
+    - target: {fileID: 114299726853037410, guid: 6fb95b00634533e4aabdc54207e8830e,
+        type: 2}
+      propertyPath: InFlowingPump
+      value: 
+      objectReference: {fileID: 1127941340}
+    - target: {fileID: 114299726853037410, guid: 6fb95b00634533e4aabdc54207e8830e,
+        type: 2}
+      propertyPath: InPump
+      value: 
+      objectReference: {fileID: 1127941340}
+    - target: {fileID: 114299726853037410, guid: 6fb95b00634533e4aabdc54207e8830e,
+        type: 2}
+      propertyPath: OutPump
+      value: 
+      objectReference: {fileID: 1849263467}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6fb95b00634533e4aabdc54207e8830e, type: 2}
   m_IsPrefabAsset: 0
+--- !u!114 &1913633097 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114635232617175116, guid: ecb9ed18472e91e4a9841f3279372fb3,
+    type: 2}
+  m_PrefabInternal: {fileID: 715248612}
+  m_Script: {fileID: 11500000, guid: 30816d10136ef274c8a70766d85144b7, type: 3}
 --- !u!1001 &2007097121
 Prefab:
   m_ObjectHideFlags: 0
@@ -1833,6 +2101,16 @@ Prefab:
       propertyPath: m_Name
       value: Filter1
       objectReference: {fileID: 0}
+    - target: {fileID: 114698971064820580, guid: 2c0771878fa98c542813384f180890d5,
+        type: 2}
+      propertyPath: PreviousModule
+      value: 
+      objectReference: {fileID: 854854617}
+    - target: {fileID: 114698971064820580, guid: 2c0771878fa98c542813384f180890d5,
+        type: 2}
+      propertyPath: InFlowingPump
+      value: 
+      objectReference: {fileID: 1127941340}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2c0771878fa98c542813384f180890d5, type: 2}
   m_IsPrefabAsset: 0
@@ -1878,6 +2156,25 @@ Prefab:
     - target: {fileID: 1612925740482596, guid: ecb9ed18472e91e4a9841f3279372fb3, type: 2}
       propertyPath: m_Name
       value: Pipe2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114635232617175116, guid: ecb9ed18472e91e4a9841f3279372fb3,
+        type: 2}
+      propertyPath: PreviousModule
+      value: 
+      objectReference: {fileID: 1127941340}
+    - target: {fileID: 114635232617175116, guid: ecb9ed18472e91e4a9841f3279372fb3,
+        type: 2}
+      propertyPath: InFlowingPump
+      value: 
+      objectReference: {fileID: 1127941340}
+    - target: {fileID: 1354026458969526, guid: ecb9ed18472e91e4a9841f3279372fb3, type: 2}
+      propertyPath: m_Name
+      value: Sensor2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114201832724189754, guid: ecb9ed18472e91e4a9841f3279372fb3,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ecb9ed18472e91e4a9841f3279372fb3, type: 2}
