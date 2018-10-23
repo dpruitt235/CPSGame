@@ -7,6 +7,8 @@ public class TextController : MonoBehaviour {
     public Text VictorTextbox;
     public Text ReservoirFillTextbox;
 
+    public GameObject Reservoir;
+
     // Use this for initialization
     void Start () {
 		if (Results.ReservoirFill >= Results.ReservoirLimit)
@@ -15,5 +17,13 @@ public class TextController : MonoBehaviour {
             VictorTextbox.text = "Defender Wins!";
         }
         ReservoirFillTextbox.text = "Reservoir Fill: " + Results.ReservoirFill + "/" + Results.ReservoirLimit;
+
+        Reservoir.transform.localPosition += Vector3.up * Results.ReservoirFill/6F;
+        Reservoir.transform.localScale += Vector3.up * Results.ReservoirFill/3F;
+
+        if (Results.ReservoirFill == 0)
+        {
+            Reservoir.transform.localPosition += Vector3.up * -15;
+        }
     }
 }

@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class Filter : Module
+﻿public class Filter : Module
 {
     /// <summary>
     /// If the filter is attacked, it is clogged and water will not flow through
@@ -13,5 +9,10 @@ public class Filter : Module
         {
             base.OnFlow();
         }
+    }
+
+    public override bool IsFilter()
+    {
+        return true;
     }
 }

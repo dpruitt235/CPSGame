@@ -10,4 +10,9 @@
             base.OnFlow();
         }
     }
+
+    public override bool IsFilter()
+    {
+        return true;
+    }
 }

@@ -20,7 +20,11 @@ public abstract class Module : MonoBehaviour
     public bool Attacked = false;
 
     public int Fill = 0;
-    public int Capacity = 1;
+
+    public virtual int Capacity
+    {
+        get { return 1; }
+    }
 
     private GameController gameController;
 
@@ -31,6 +35,16 @@ public abstract class Module : MonoBehaviour
 
     private GameObject attackedIndicatorInstance;
     private Canvas rootCanvas;
+
+    public virtual bool IsFilter()
+    {
+        return false;
+    }
+
+    public virtual bool IsPump()
+    {
+        return false;
+    }
 
 	private void Awake() {
         this.displayFields = new List<string>
@@ -66,7 +80,7 @@ public abstract class Module : MonoBehaviour
         this.gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
     }
 
-    public void Tick()
+    public virtual void Tick()
     {
         if (this.InFlowingPump.On)
         {
@@ -112,7 +126,7 @@ public abstract class Module : MonoBehaviour
     {
         this.Attacked = true;
         this.attackedIndicatorInstance.SetActive(true);
-        this.gameController.AddAttack();
+        this.gameController.NumAvailableAttacks--;
     }
 
     /// <summary>
@@ -122,7 +136,6 @@ public abstract class Module : MonoBehaviour
     {
         if (this.Attacked)
         {
-            this.gameController.RemoveAttack();
             this.Attacked = false;
             this.attackedIndicatorInstance.SetActive(false);
         }
@@ -139,11 +152,12 @@ public abstract class Module : MonoBehaviour
             {
                 if (this.Attacked)
                 {
+                    this.gameController.NumAvailableAttacks++;
                     this.Fix();
                 }
                 else
                 {
-                    if (this.gameController.AvailableAttacks > 0)
+                    if (this.gameController.NumAvailableAttacks > 0)
                     {
                         this.Attack();
                     }

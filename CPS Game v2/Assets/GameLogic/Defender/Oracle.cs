@@ -1,26 +1,44 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 /// <summary>
 /// The Oracle has two valuations that, each can point at a module.  The Oracle uses these valuations to fix modules.
 /// </summary>
 public class Oracle : MonoBehaviour
 {
+    public GameObject FloatingTextPreFab;
     public bool InputActive = false;
-    string message  = "Prevented an attack!";
-    bool displayMessage  = true;
-    float displayTime = 3.0f;
+    public string messageText = "Stopped an attack!";
 
     private Valuation firstValuation, secondValuation;
 
     private Vector3 screenPoint, offset;
+
+    private Vector2 minScreen = new Vector2(0, 0);
+    private Vector2 maxScreen = new Vector2(Screen.width, Screen.height);
+
+    private int count = 0; // used for testing right mouse clicks
 
     private void Awake()
     {
         var vals = this.GetComponentsInChildren<Valuation>();
         this.firstValuation = vals[0];
         this.secondValuation = vals[1];
+    }
+
+    private void OnMouseOver()
+    {
+        if (Input.GetMouseButtonDown(1))
+        {
+            ShowFloatingText("RIGHT CLICK: " + count);
+            this.InputActive = false; // makes the owl unmoveable
+        }
+        if(Input.GetMouseButton(0) && Input.GetMouseButton(1))
+        {
+            this.InputActive = true; // makes the owl moveable again
+        }
     }
 
     private void OnMouseDown()
@@ -32,12 +50,35 @@ public class Oracle : MonoBehaviour
         }
     }
 
+    
+
     private void OnMouseDrag()
     {
         if (InputActive)
         {
             Vector3 cursorPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
             Vector3 cursorPosition = Camera.main.ScreenToWorldPoint(cursorPoint) + offset;
+
+            Vector2 minPosition = Camera.main.ScreenToWorldPoint(minScreen);
+            Vector2 maxPosition = Camera.main.ScreenToWorldPoint(maxScreen);
+
+            //owl screen bounds 
+            if ( (cursorPosition.x) < minPosition.x)
+            {
+                cursorPosition.x = minPosition.x;
+            }else if(cursorPosition.x > maxPosition.x)
+            {
+                cursorPosition.x = maxPosition.x;
+            }
+
+            if (cursorPosition.y < minPosition.y)
+            {
+                cursorPosition.y = minPosition.y;
+            }else if(cursorPosition.y > maxPosition.y)
+            {
+                cursorPosition.y = maxPosition.y;
+            }
+
             transform.position = cursorPosition;
             this.firstValuation.UpdateLine();
             this.secondValuation.UpdateLine();
@@ -95,8 +136,13 @@ public class Oracle : MonoBehaviour
         if (successfulDefense)
         {
             mods.ForEach(m => m.Fix());
-            GUI.Label(new Rect(Screen.width * 0.5f - 50f, Screen.height * 0.5f - 10f, 100f, 20f), message);
-
+            if(FloatingTextPreFab !=null)
+                ShowFloatingText(messageText);
         }
+    }
+    void ShowFloatingText(string message)
+    {
+        var go = Instantiate(FloatingTextPreFab, transform.position, Quaternion.identity, transform);
+        go.GetComponent<TextMesh>().text = message;
     }
 }
