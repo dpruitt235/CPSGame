@@ -365,7 +365,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -163, y: 39}
+  m_AnchoredPosition: {x: -104.5, y: 39}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &256881651
@@ -549,13 +549,13 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 534669902}
-  m_LocalRotation: {x: 0.40258476, y: -0.011777147, z: 0.00007270704, w: 0.9153069}
-  m_LocalPosition: {x: 1.28, y: 8.84, z: -7.87}
+  m_LocalRotation: {x: 0.5237676, y: -0.011676823, z: -0.0015357115, w: 0.8517798}
+  m_LocalPosition: {x: 1.28, y: 7.84, z: -2.05}
   m_LocalScale: {x: 0.37414083, y: 1.2934109, z: 0.39960355}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 132.525, y: -181.823, z: -180.793}
+  m_LocalEulerAnglesHint: {x: 116.845, y: -182.729, z: -181.884}
 --- !u!114 &534669906
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1147,20 +1147,19 @@ MonoBehaviour:
   SceneLoader: {fileID: 1663656656}
   OraclePrefab: {fileID: 1151573525474462, guid: 2f3523011a04e6f40aa95f958c2abf53,
     type: 2}
-  OracleSpawnPoint: {x: 2, y: 2, z: 0}
+  OracleSpawnPoint: {x: -3, y: 3.5, z: 0}
   AttackerUI: {fileID: 1402154358}
   Reservoir: {fileID: 1177941902}
   TurnCounter: {fileID: 0}
   ReservoirCounter: {fileID: 0}
   ScreenCover: {fileID: 0}
   GameUI: {fileID: 0}
-  TurnText: {fileID: 0}
+  TurnText: {fileID: 1311477495}
   NumberOfAttacksPerTurn: 1
   NumberOfOracles: 2
   ReservoirLimit: 10
   TurnLimit: 15
-  TurnTimer: {fileID: 0}
-  GameState: 1
+  GameState: 0
 --- !u!4 &995454138
 Transform:
   m_ObjectHideFlags: 0
@@ -1484,7 +1483,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -164, y: 95.1}
+  m_AnchoredPosition: {x: -111.2, y: 95.1}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1311477494
