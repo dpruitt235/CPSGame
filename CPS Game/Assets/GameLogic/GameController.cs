@@ -43,7 +43,7 @@ public class GameController : MonoBehaviour
 
     public GameState GameState = GameState.AttackerTurn;
 
-    private List<Oracle> oracles;
+    protected List<Oracle> oracles;
 
     private void Awake()
     {

@@ -89,7 +89,7 @@ public class Valuation : MonoBehaviour
         }.ToArray());
     }
 
-    private void Select(Module mod)
+    public void Select(Module mod)
     {
         this.module = mod;
         this.DrawLine(this.transform.position, mod.transform.position);

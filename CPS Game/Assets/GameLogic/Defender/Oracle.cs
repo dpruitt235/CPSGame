@@ -145,4 +145,10 @@ public class Oracle : MonoBehaviour
         var go = Instantiate(FloatingTextPreFab, transform.position, Quaternion.identity, transform);
         go.GetComponent<TextMesh>().text = message;
     }
+
+    public void SetValuation(Module first, Module second)
+    {
+        this.firstValuation.Select(first);
+        this.secondValuation.Select(second);
+    }
 }
