@@ -35,10 +35,10 @@ public class GameController : MonoBehaviour
     public int ReservoirLimit = 10;
     public int TurnLimit = 15;
 
-    public Text TurnTimer;
-    private DateTime ActiveTurnTimer;
-    private DateTime EndTurnTimer;
-    private bool ActiveTurn;
+    //public Text TurnTimer;
+    //private DateTime ActiveTurnTimer;
+    //private DateTime EndTurnTimer;
+    //private bool ActiveTurn;
 
 
     public GameState GameState = GameState.AttackerTurn;
@@ -50,25 +50,25 @@ public class GameController : MonoBehaviour
         this.NumAvailableAttacks = this.NumberOfAttacksPerTurn;
         Results.ReservoirLimit = ReservoirLimit;
         this.oracles = new List<Oracle>();
-        TurnText.gameObject.SetActive(false);
+        TurnText.gameObject.SetActive(true);
     }
 
     private void Start()
     {
         for (int i = 0; i < this.NumberOfOracles; i++)
         {
-            var newOracle = Instantiate(this.OraclePrefab, new Vector3(this.OracleSpawnPoint.x + (i * 2), this.OracleSpawnPoint.y, -9), Quaternion.identity);
+            var newOracle = Instantiate(this.OraclePrefab, new Vector3(this.OracleSpawnPoint.x + (i * 2), this.OracleSpawnPoint.y, this.OracleSpawnPoint.z), this.OraclePrefab.transform.rotation);
             oracles.Add(newOracle.GetComponent<Oracle>());
         }
 
-        ActiveTurnTimer = DateTime.Now;
-        EndTurnTimer = DateTime.Now.AddSeconds(15);
-        ActiveTurn = true;
+        //ActiveTurnTimer = DateTime.Now;
+        //EndTurnTimer = DateTime.Now.AddSeconds(15);
+        //ActiveTurn = true;
     }
 
     public void EndTurn()
     {
-        ActiveTurn = false;
+        //ActiveTurn = false;
 
         if (this.GameState == GameState.AttackerTurn)
         {
@@ -109,39 +109,39 @@ public class GameController : MonoBehaviour
             TurnText.color = new Color(1F, 0, 0);
         }
 
-        StartCoroutine(WaitForClick());
+        //StartCoroutine(WaitForClick());
     }
 
-    void Update()
-    {
-        if (ActiveTurn)
-        {
-            ActiveTurnTimer = DateTime.Now;
-            TurnTimer.text = "Time left: " + (EndTurnTimer.Second - ActiveTurnTimer.Second).ToString();
+    //void Update()
+    //{
+    //    //if (ActiveTurn)
+    //    //{
+    //    //    ActiveTurnTimer = DateTime.Now;
+    //    //    TurnTimer.text = "Time left: " + (EndTurnTimer.Second - ActiveTurnTimer.Second).ToString();
 
-            if (ActiveTurnTimer > EndTurnTimer)
-            {
-                EndTurn();   
-            }
-        }
+    //    //    if (ActiveTurnTimer > EndTurnTimer)
+    //    //    {
+    //    //        EndTurn();   
+    //    //    }
+    //    //}
 
-    }
+    //}
 
-    IEnumerator WaitForClick()
-    {
-        ScreenCover.transform.localPosition -= Vector3.up * 15;
-        GameUI.SetActive(false);
-        TurnText.gameObject.SetActive(true);
-        TurnTimer.gameObject.SetActive(false);
+    //IEnumerator WaitForClick()
+    //{
+    //    ScreenCover.transform.localPosition -= Vector3.up * 15;
+    //    GameUI.SetActive(false);
+    //    TurnText.gameObject.SetActive(true);
+    //    TurnTimer.gameObject.SetActive(false);
 
-        yield return new WaitWhile(() => !Input.GetMouseButtonDown(0));
+    //    yield return new WaitWhile(() => !Input.GetMouseButtonDown(0));
 
-        TurnText.gameObject.SetActive(false);
-        TurnTimer.gameObject.SetActive(true);
-        GameUI.SetActive(true);
-        ScreenCover.transform.localPosition += Vector3.up * 15;
+    //    TurnText.gameObject.SetActive(false);
+    //    TurnTimer.gameObject.SetActive(true);
+    //    GameUI.SetActive(true);
+    //    ScreenCover.transform.localPosition += Vector3.up * 15;
 
-        ActiveTurn = true;
-        EndTurnTimer = DateTime.Now.AddSeconds(15);
-    }
+    //    ActiveTurn = true;
+    //    EndTurnTimer = DateTime.Now.AddSeconds(15);
+    //}
 }
