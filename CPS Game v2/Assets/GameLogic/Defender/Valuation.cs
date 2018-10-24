@@ -50,10 +50,13 @@ public class Valuation : MonoBehaviour
         if (!this.parentOracle.InputActive)
             return;
 
-        //determine if it was dragged onto a module, if so, select that module
-        RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
-        if (hit.collider != null)
+        RaycastHit hit;
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+        if (Physics.Raycast(ray, out hit))
         {
+            Transform objectHit = hit.transform;
+
             Module mod = hit.transform.GetComponent<Module>();
             if (mod != null)
             {
@@ -75,8 +78,14 @@ public class Valuation : MonoBehaviour
         if (!this.parentOracle.InputActive)
             return;
 
-        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        this.DrawLine(this.transform.position, mousePos);
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        float enter = 0.0f;
+
+        if (this.parentOracle.MovementPlane.Raycast(ray, out enter))
+        {
+            Vector3 hitPoint = ray.GetPoint(enter);
+            this.DrawLine(this.transform.position, hitPoint);
+        }
     }
 
     private void DrawLine(Vector3 start, Vector3 end)

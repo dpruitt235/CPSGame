@@ -525,7 +525,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 110
+  field of view: 50
   orthographic: 0
   orthographic size: 6.5
   m_Depth: -1
@@ -549,13 +549,13 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 534669902}
-  m_LocalRotation: {x: 0.5237676, y: -0.011676823, z: -0.0015357115, w: 0.8517798}
-  m_LocalPosition: {x: 1.28, y: 7.84, z: -2.05}
-  m_LocalScale: {x: 0.37414083, y: 1.2934109, z: 0.39960355}
+  m_LocalRotation: {x: 0.5236514, y: 0, z: 0, w: 0.85193264}
+  m_LocalPosition: {x: 1.28, y: 12.03, z: -5.82}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 116.845, y: -182.729, z: -181.884}
+  m_LocalEulerAnglesHint: {x: 116.845, y: -180, z: -180}
 --- !u!114 &534669906
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -953,7 +953,7 @@ Prefab:
         type: 2}
       propertyPath: InFlowingPump
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1032295293}
     - target: {fileID: 1354026458969526, guid: ecb9ed18472e91e4a9841f3279372fb3, type: 2}
       propertyPath: m_Name
       value: Sensor1
@@ -1151,7 +1151,6 @@ MonoBehaviour:
   AttackerUI: {fileID: 1402154358}
   Reservoir: {fileID: 1177941902}
   TurnCounter: {fileID: 0}
-  ReservoirCounter: {fileID: 0}
   ScreenCover: {fileID: 0}
   GameUI: {fileID: 0}
   TurnText: {fileID: 1311477495}
@@ -1159,7 +1158,7 @@ MonoBehaviour:
   NumberOfOracles: 2
   ReservoirLimit: 10
   TurnLimit: 15
-  GameState: 0
+  GameState: 1
 --- !u!4 &995454138
 Transform:
   m_ObjectHideFlags: 0

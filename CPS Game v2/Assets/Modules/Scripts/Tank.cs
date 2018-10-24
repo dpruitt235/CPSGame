@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class Tank : Module
 {
-    public Pump InPump;
-    public Pump OutPump;
+    public Pump OutFlowingPump;
 
     public GameObject overFlowSprite;
 
@@ -22,7 +21,7 @@ public class Tank : Module
     {
         if(this.PreviousModule)
         {
-            int inFlow = (InPump.On) ? this.PreviousModule.Fill : 0;
+            int inFlow = (this.InFlowingPump.On) ? this.PreviousModule.Fill : 0;
             this.Fill += inFlow;
             this.PreviousModule.Fill -= inFlow;
         }

@@ -20,7 +20,7 @@ public class GameController : MonoBehaviour
     public Reservoir Reservoir;
 
     public Text TurnCounter;
-    public Text ReservoirCounter;
+    //public Text ReservoirCounter;
 
     public GameObject ScreenCover;
     public GameObject GameUI;
@@ -61,6 +61,8 @@ public class GameController : MonoBehaviour
             oracles.Add(newOracle.GetComponent<Oracle>());
         }
 
+        this.EndTurn();
+        this.EndTurn();
         //ActiveTurnTimer = DateTime.Now;
         //EndTurnTimer = DateTime.Now.AddSeconds(15);
         //ActiveTurn = true;
@@ -103,8 +105,8 @@ public class GameController : MonoBehaviour
                 Results.ReservoirFill = Reservoir.Fill;
                 this.SceneLoader.LoadNextScene();
             }
-            ReservoirCounter.text = Reservoir.Fill.ToString();
-            TurnCounter.text = "Turn: " + (Turn+1);
+            //ReservoirCounter.text = Reservoir.Fill.ToString();
+            //TurnCounter.text = "Turn: " + (Turn+1);
             TurnText.text = "Attacker's Turn";
             TurnText.color = new Color(1F, 0, 0);
         }

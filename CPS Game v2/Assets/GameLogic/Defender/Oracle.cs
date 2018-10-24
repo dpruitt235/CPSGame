@@ -12,15 +12,10 @@ public class Oracle : MonoBehaviour
     public bool InputActive = false;
     public string messageText = "Stopped an attack!";
 
+    public Plane MovementPlane;
+
     private Valuation firstValuation, secondValuation;
-
-    private Vector3 screenPoint, offset;
-
-    private Vector2 minScreen = new Vector2(0, 0);
-    private Vector2 maxScreen = new Vector2(Screen.width, Screen.height);
-
-    private int count = 0; // used for testing right mouse clicks
-
+    
     private void Awake()
     {
         var vals = this.GetComponentsInChildren<Valuation>();
@@ -28,58 +23,29 @@ public class Oracle : MonoBehaviour
         this.secondValuation = vals[1];
     }
 
-    private void OnMouseOver()
+    private void Start()
     {
-        if (Input.GetMouseButtonDown(1))
-        {
-            ShowFloatingText("RIGHT CLICK: " + count);
-            this.InputActive = false; // makes the owl unmoveable
-        }
-        if(Input.GetMouseButton(0) && Input.GetMouseButton(1))
-        {
-            this.InputActive = true; // makes the owl moveable again
-        }
+        this.MovementPlane = new Plane(Vector3.up, this.transform.position);
     }
-
-    private void OnMouseDown()
-    {
-        if (InputActive)
-        {
-            screenPoint = Camera.main.WorldToScreenPoint(gameObject.transform.position);
-            offset = gameObject.transform.position - Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z));
-        }
-    }
-
     
-
     private void OnMouseDrag()
     {
         if (InputActive)
         {
-            Vector3 cursorPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
-            Vector3 cursorPosition = Camera.main.ScreenToWorldPoint(cursorPoint) + offset;
+            //Shoot a raycast to the x-z plane that the owl resides to get the location to move to
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            float enter = 0.0f;
 
-            Vector2 minPosition = Camera.main.ScreenToWorldPoint(minScreen);
-            Vector2 maxPosition = Camera.main.ScreenToWorldPoint(maxScreen);
+            if (this.MovementPlane.Raycast(ray, out enter))
+            {
+                //Get the point that is clicked
+                Vector3 hitPoint = ray.GetPoint(enter);
 
-            //owl screen bounds 
-            if ( (cursorPosition.x) < minPosition.x)
-            {
-                cursorPosition.x = minPosition.x;
-            }else if(cursorPosition.x > maxPosition.x)
-            {
-                cursorPosition.x = maxPosition.x;
+                //Move your cube GameObject to the point where you clicked
+                this.transform.position = hitPoint;
             }
 
-            if (cursorPosition.y < minPosition.y)
-            {
-                cursorPosition.y = minPosition.y;
-            }else if(cursorPosition.y > maxPosition.y)
-            {
-                cursorPosition.y = maxPosition.y;
-            }
-
-            transform.position = cursorPosition;
+            //Update the lines that come from the valuations
             this.firstValuation.UpdateLine();
             this.secondValuation.UpdateLine();
         }
@@ -92,7 +58,6 @@ public class Oracle : MonoBehaviour
     {
         if (this.firstValuation.CurrentSelection == null || this.secondValuation.CurrentSelection == null)
         {
-            Debug.Log("must set both valuations");
             return;
         }
 
