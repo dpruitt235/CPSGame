@@ -20,7 +20,7 @@ public class GameController : MonoBehaviour
     public Reservoir Reservoir;
 
     public Text TurnCounter;
-    //public Text ReservoirCounter;
+    public Text ReservoirCounter;
 
     public GameObject ScreenCover;
     public GameObject GameUI;
@@ -105,8 +105,8 @@ public class GameController : MonoBehaviour
                 Results.ReservoirFill = Reservoir.Fill;
                 this.SceneLoader.LoadNextScene();
             }
-            //ReservoirCounter.text = Reservoir.Fill.ToString();
-            //TurnCounter.text = "Turn: " + (Turn+1);
+            ReservoirCounter.text = Reservoir.Fill.ToString() + "/" + ReservoirLimit;
+            TurnCounter.text = "Turn: " + Turn + "/" + TurnLimit;
             TurnText.text = "Attacker's Turn";
             TurnText.color = new Color(1F, 0, 0);
         }
