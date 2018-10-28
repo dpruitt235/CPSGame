@@ -105,8 +105,8 @@ public class GameController : MonoBehaviour
                 Results.ReservoirFill = Reservoir.Fill;
                 this.SceneLoader.LoadNextScene();
             }
-            ReservoirCounter.text = Reservoir.Fill.ToString() + "/" + ReservoirLimit;
-            TurnCounter.text = "Turn: " + Turn + "/" + TurnLimit;
+            //ReservoirCounter.text = Reservoir.Fill.ToString() + "/" + ReservoirLimit;
+            //TurnCounter.text = "Turn: " + Turn + "/" + TurnLimit;
             TurnText.text = "Attacker's Turn";
             TurnText.color = new Color(1F, 0, 0);
         }
