@@ -22,8 +22,9 @@ public class GameController : MonoBehaviour
     public Text TurnCounter;
     public Text ReservoirCounter;
 
-    public GameObject ScreenCover;
+    public Image ScreenCover;
     public GameObject GameUI;
+    public GameObject GameBoard;
     public Text TurnText;
 
     public int NumberOfAttacksPerTurn = 1;
@@ -51,6 +52,8 @@ public class GameController : MonoBehaviour
         Results.ReservoirLimit = ReservoirLimit;
         this.oracles = new List<Oracle>();
         TurnText.gameObject.SetActive(true);
+        ScreenCover.gameObject.SetActive(false);
+        ScreenCover.fillCenter = true;
     }
 
     private void Start()
@@ -61,7 +64,6 @@ public class GameController : MonoBehaviour
             oracles.Add(newOracle.GetComponent<Oracle>());
         }
 
-        this.EndTurn();
         this.EndTurn();
         //ActiveTurnTimer = DateTime.Now;
         //EndTurnTimer = DateTime.Now.AddSeconds(15);
@@ -105,13 +107,16 @@ public class GameController : MonoBehaviour
                 Results.ReservoirFill = Reservoir.Fill;
                 this.SceneLoader.LoadNextScene();
             }
-            //ReservoirCounter.text = Reservoir.Fill.ToString() + "/" + ReservoirLimit;
-            //TurnCounter.text = "Turn: " + Turn + "/" + TurnLimit;
+            ReservoirCounter.text = Reservoir.Fill.ToString() + "/" + ReservoirLimit;
+            TurnCounter.text = "Turn: " + Turn + "/" + TurnLimit;
             TurnText.text = "Attacker's Turn";
             TurnText.color = new Color(1F, 0, 0);
         }
 
-        //StartCoroutine(WaitForClick());
+        ScreenCover.gameObject.GetComponentsInChildren<Text>()[0].text = TurnText.text;
+        ScreenCover.gameObject.GetComponentsInChildren<Text>()[0].color = TurnText.color;
+
+        StartCoroutine(WaitForClick());
     }
 
     //void Update()
@@ -129,21 +134,21 @@ public class GameController : MonoBehaviour
 
     //}
 
-    //IEnumerator WaitForClick()
-    //{
-    //    ScreenCover.transform.localPosition -= Vector3.up * 15;
-    //    GameUI.SetActive(false);
-    //    TurnText.gameObject.SetActive(true);
-    //    TurnTimer.gameObject.SetActive(false);
+    IEnumerator WaitForClick()
+    {
+        ScreenCover.gameObject.SetActive(true);
+        GameUI.SetActive(false);
+        GameBoard.SetActive(false);
+        //TurnTimer.gameObject.SetActive(false);
 
-    //    yield return new WaitWhile(() => !Input.GetMouseButtonDown(0));
+        yield return new WaitWhile(() => !Input.GetMouseButtonDown(0));
 
-    //    TurnText.gameObject.SetActive(false);
-    //    TurnTimer.gameObject.SetActive(true);
-    //    GameUI.SetActive(true);
-    //    ScreenCover.transform.localPosition += Vector3.up * 15;
+        ScreenCover.gameObject.SetActive(false);
+        //TurnTimer.gameObject.SetActive(true);
+        GameUI.SetActive(true);
+        GameBoard.SetActive(true);
 
-    //    ActiveTurn = true;
-    //    EndTurnTimer = DateTime.Now.AddSeconds(15);
-    //}
+        //ActiveTurn = true;
+        // EndTurnTimer = DateTime.Now.AddSeconds(15);
+    }
 }

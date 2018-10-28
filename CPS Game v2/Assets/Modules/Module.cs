@@ -19,7 +19,7 @@ public abstract class Module : MonoBehaviour
 
     public bool Attacked = false;
 
-    public int Fill = 0;
+    public int Fill = 1;
 
     public virtual int Capacity
     {
