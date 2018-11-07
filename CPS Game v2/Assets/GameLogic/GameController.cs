@@ -36,10 +36,11 @@ public class GameController : MonoBehaviour
     public int ReservoirLimit = 10;
     public int TurnLimit = 15;
 
-    //public Text TurnTimer;
-    //private DateTime ActiveTurnTimer;
-    //private DateTime EndTurnTimer;
-    //private bool ActiveTurn;
+    public Text TurnTimer;
+    private DateTime ActiveTurnTimer;
+    private DateTime StartTurnTimer;
+    public int TurnDuration = 15; // Seconds
+    private bool ActiveTurn;
 
 
     public GameState GameState = GameState.AttackerTurn;
@@ -65,14 +66,13 @@ public class GameController : MonoBehaviour
         }
 
         this.EndTurn();
-        //ActiveTurnTimer = DateTime.Now;
-        //EndTurnTimer = DateTime.Now.AddSeconds(15);
-        //ActiveTurn = true;
+        StartTurnTimer = DateTime.Now;
+        ActiveTurn = true;
     }
 
     public void EndTurn()
     {
-        //ActiveTurn = false;
+        ActiveTurn = false;
 
         if (this.GameState == GameState.AttackerTurn)
         {
@@ -119,36 +119,49 @@ public class GameController : MonoBehaviour
         StartCoroutine(WaitForClick());
     }
 
-    //void Update()
-    //{
-    //    //if (ActiveTurn)
-    //    //{
-    //    //    ActiveTurnTimer = DateTime.Now;
-    //    //    TurnTimer.text = "Time left: " + (EndTurnTimer.Second - ActiveTurnTimer.Second).ToString();
+    void Update()
+    {
+        if (ActiveTurn)
+        {
+            ActiveTurnTimer = DateTime.Now;
+            int SecondsRemaining = (TurnDuration - (ActiveTurnTimer - StartTurnTimer).Seconds);
+            TurnTimer.text = "Time Remaining: " + SecondsRemaining.ToString();
 
-    //    //    if (ActiveTurnTimer > EndTurnTimer)
-    //    //    {
-    //    //        EndTurn();   
-    //    //    }
-    //    //}
+            if (SecondsRemaining > 5)
+            {
+                TurnTimer.color = new Color(.79f, .82f, .16f);
+            }
+            else if (SecondsRemaining % 2 == 0)
+            {
+                TurnTimer.color = new Color(1f, .3f, .15f);
+            }
+            else
+            {
+                TurnTimer.color = new Color(1f, .2f, 0);
+            }
 
-    //}
+            if (ActiveTurnTimer > StartTurnTimer.AddSeconds(TurnDuration))
+            {
+                EndTurn();   
+            }
+        }
+    }
 
     IEnumerator WaitForClick()
     {
         ScreenCover.gameObject.SetActive(true);
         GameUI.SetActive(false);
         GameBoard.SetActive(false);
-        //TurnTimer.gameObject.SetActive(false);
+        TurnTimer.gameObject.SetActive(false);
 
         yield return new WaitWhile(() => !Input.GetMouseButtonDown(0));
 
         ScreenCover.gameObject.SetActive(false);
-        //TurnTimer.gameObject.SetActive(true);
+        TurnTimer.gameObject.SetActive(true);
         GameUI.SetActive(true);
         GameBoard.SetActive(true);
 
-        //ActiveTurn = true;
-        // EndTurnTimer = DateTime.Now.AddSeconds(15);
+        ActiveTurn = true;
+        StartTurnTimer = DateTime.Now;
     }
 }
