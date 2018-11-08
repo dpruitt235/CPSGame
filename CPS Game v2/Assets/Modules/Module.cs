@@ -19,11 +19,11 @@ public abstract class Module : MonoBehaviour
 
     public bool Attacked = false;
 
-    public int Fill = 1;
+    public WaterObject Water;
 
     public virtual int Capacity
     {
-        get { return 1; }
+        get { return 3; }
     }
 
     private GameController gameController;
@@ -50,8 +50,8 @@ public abstract class Module : MonoBehaviour
         this.displayFields = new List<string>
         {
             "Attacked",
-            "Fill",
-            "Capacity"
+            "Capacity",
+            "Water"
         };
 
         rootCanvas = (Canvas)FindObjectOfType(typeof(Canvas));
@@ -82,15 +82,20 @@ public abstract class Module : MonoBehaviour
 
     public virtual void Tick()
     {
-        if (this.InFlowingPump.On)
+        if (this.PreviousModule && this.PreviousModule.Attacked)
+        {
+            Water = null;
+            Debug.Log("Water set to null");
+        }
+        else if (this.InFlowingPump.On)
         {
             this.OnFlow();
         }
 
-        if (this.Fill > this.Capacity)
+        /*if (Water.Amount > this.Capacity)
         {
             this.OnOverflow();
-        }
+        }*/
 
         this.UpdatePopupDisplay();
         if (this.PreviousModule)
@@ -105,9 +110,7 @@ public abstract class Module : MonoBehaviour
     {
         if (this.PreviousModule)
         {
-            int inFlow = Mathf.Clamp(this.PreviousModule.Fill, 0, this.Capacity - this.Fill);
-            this.Fill += inFlow;
-            this.PreviousModule.Fill -= inFlow;
+            Water = this.PreviousModule.Water;
         }
     }
 

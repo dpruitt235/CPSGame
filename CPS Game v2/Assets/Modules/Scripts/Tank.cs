@@ -8,10 +8,10 @@ public class Tank : Module
 
     public GameObject overFlowSprite;
 
+    public List<WaterObject> WaterList = new List<WaterObject>();
+
     [Range(1, 10)]
     public int TankCapacity = 5;
-
-    public override int Capacity { get { return TankCapacity; } }
 
     /// <summary>
     /// Check if inpump is on. Bring in unit of water from previous
@@ -19,18 +19,19 @@ public class Tank : Module
     /// </summary>
     protected override void OnFlow()
     {
-        if(this.PreviousModule)
+        if(this.PreviousModule && PreviousModule.Water != null)
         {
-            int inFlow = (this.InFlowingPump.On) ? this.PreviousModule.Fill : 0;
-            this.Fill += inFlow;
-            this.PreviousModule.Fill -= inFlow;
+            WaterList.Add(this.PreviousModule.Water);
+            if(WaterList.Count > TankCapacity)
+            {
+                OnOverflow();
+            }
         }
     }
 
     //create object behind tank to look like spilled water
     protected override void OnOverflow()
     {
-        // Current Issue: Will not appear when run.
-        overFlowSprite.SetActive(true);
+        //overFlowSprite.SetActive(true);
     }
 }

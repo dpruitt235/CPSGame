@@ -19,6 +19,7 @@ public class WaterFlowController : MonoBehaviour
             currMod = currMod.PreviousModule;
         }
         this.firstModule = currMod;
+        this.firstModule.Water = new WaterObject();
     }
 
     /// <summary>
@@ -27,8 +28,8 @@ public class WaterFlowController : MonoBehaviour
     /// </summary>
     public void TickModules()
     {
-        this.firstModule.Fill = this.firstModule.Capacity;
         this.Reservoir.Tick();
+        this.firstModule.Water = new WaterObject();
     }
 
     /// <summary>

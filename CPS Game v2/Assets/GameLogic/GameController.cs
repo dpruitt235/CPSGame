@@ -94,20 +94,16 @@ public class GameController : MonoBehaviour
                 o.ApplyRule();
             }
 
-            this.WaterFlowController.TickModules();
-
-            if (Reservoir.Fill >= ReservoirLimit)
-            {
-                Results.ReservoirFill = Reservoir.Fill;
-                this.SceneLoader.LoadNextScene();
+            for (int i = 0; i < 13; i++) {
+                this.WaterFlowController.TickModules();
             }
 
             if (++Turn >= TurnLimit)
             {
-                Results.ReservoirFill = Reservoir.Fill;
+                Results.ReservoirFill = Reservoir.WaterList.Count;
                 this.SceneLoader.LoadNextScene();
             }
-            ReservoirCounter.text = Reservoir.Fill.ToString() + "/" + ReservoirLimit;
+            ReservoirCounter.text = Reservoir.WaterList.Count.ToString() + "/" + ReservoirLimit;
             TurnCounter.text = "Turn: " + Turn + "/" + TurnLimit;
             TurnText.text = "Attacker's Turn";
             TurnText.color = new Color(1F, 0, 0);
