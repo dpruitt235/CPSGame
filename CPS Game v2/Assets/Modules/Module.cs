@@ -12,6 +12,7 @@ public abstract class Module : MonoBehaviour
 {
     public GameObject popupPrefab;
     public GameObject AttackedIndicator;
+    public GameObject AttackedDropdown;
 
     public Module PreviousModule;
 
@@ -130,6 +131,7 @@ public abstract class Module : MonoBehaviour
         this.Attacked = true;
         this.attackedIndicatorInstance.SetActive(true);
         this.gameController.NumAvailableAttacks--;
+        
     }
 
     /// <summary>
