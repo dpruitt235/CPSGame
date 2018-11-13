@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -113,6 +113,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &48865702 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1438407050082728, guid: 6fb95b00634533e4aabdc54207e8830e,
+    type: 2}
+  m_PrefabInternal: {fileID: 1882966618}
 --- !u!1 &99058772
 GameObject:
   m_ObjectHideFlags: 0
@@ -223,6 +228,7 @@ MonoBehaviour:
   PreviousModule: {fileID: 264402965}
   InFlowingPump: {fileID: 1849263467}
   Attacked: 0
+  WaterTank: {fileID: 264402965}
   tank: {fileID: 264402965}
 --- !u!1 &170076733
 GameObject:
@@ -349,7 +355,7 @@ Prefab:
         type: 2}
       propertyPath: PreviousModule
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 138340193}
     - target: {fileID: 114127325393874920, guid: 9c98cec72dcc6484b9854215ff2db438,
         type: 2}
       propertyPath: InFlowingPump
@@ -366,6 +372,16 @@ Prefab:
       value: 
       objectReference: {fileID: 1725499476532774, guid: 0b930ff9be5789c46b653acb96396f6a,
         type: 2}
+    - target: {fileID: 114127325393874920, guid: 9c98cec72dcc6484b9854215ff2db438,
+        type: 2}
+      propertyPath: Tank
+      value: 
+      objectReference: {fileID: 48865702}
+    - target: {fileID: 114127325393874920, guid: 9c98cec72dcc6484b9854215ff2db438,
+        type: 2}
+      propertyPath: WaterTank
+      value: 
+      objectReference: {fileID: 264402965}
     m_RemovedComponents:
     - {fileID: 114441962571396894, guid: 9c98cec72dcc6484b9854215ff2db438, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: 9c98cec72dcc6484b9854215ff2db438, type: 2}
@@ -771,6 +787,16 @@ Prefab:
       value: 
       objectReference: {fileID: 1725499476532774, guid: fc7a29672252882469119d551f50bc40,
         type: 2}
+    - target: {fileID: 114635232617175116, guid: ecb9ed18472e91e4a9841f3279372fb3,
+        type: 2}
+      propertyPath: Tank
+      value: 
+      objectReference: {fileID: 48865702}
+    - target: {fileID: 114635232617175116, guid: ecb9ed18472e91e4a9841f3279372fb3,
+        type: 2}
+      propertyPath: WaterTank
+      value: 
+      objectReference: {fileID: 264402965}
     m_RemovedComponents:
     - {fileID: 114201832724189754, guid: ecb9ed18472e91e4a9841f3279372fb3, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: ecb9ed18472e91e4a9841f3279372fb3, type: 2}
@@ -850,6 +876,26 @@ Prefab:
       value: 
       objectReference: {fileID: 1725499476532774, guid: a7c8d5c6b1750004e9eed10162e342d5,
         type: 2}
+    - target: {fileID: 114698971064820580, guid: 2c0771878fa98c542813384f180890d5,
+        type: 2}
+      propertyPath: Attacked
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114698971064820580, guid: 2c0771878fa98c542813384f180890d5,
+        type: 2}
+      propertyPath: PurityIndex
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114698971064820580, guid: 2c0771878fa98c542813384f180890d5,
+        type: 2}
+      propertyPath: Tank
+      value: 
+      objectReference: {fileID: 48865702}
+    - target: {fileID: 114698971064820580, guid: 2c0771878fa98c542813384f180890d5,
+        type: 2}
+      propertyPath: WaterTank
+      value: 
+      objectReference: {fileID: 264402965}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2c0771878fa98c542813384f180890d5, type: 2}
   m_IsPrefabAsset: 0
@@ -887,6 +933,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Reservoir: {fileID: 1177941902}
+  WaterTank: {fileID: 264402965}
 --- !u!4 &689642307
 Transform:
   m_ObjectHideFlags: 0
@@ -973,6 +1020,16 @@ Prefab:
       value: 
       objectReference: {fileID: 1725499476532774, guid: fc7a29672252882469119d551f50bc40,
         type: 2}
+    - target: {fileID: 114635232617175116, guid: ecb9ed18472e91e4a9841f3279372fb3,
+        type: 2}
+      propertyPath: Tank
+      value: 
+      objectReference: {fileID: 48865702}
+    - target: {fileID: 114635232617175116, guid: ecb9ed18472e91e4a9841f3279372fb3,
+        type: 2}
+      propertyPath: WaterTank
+      value: 
+      objectReference: {fileID: 264402965}
     m_RemovedComponents:
     - {fileID: 114201832724189754, guid: ecb9ed18472e91e4a9841f3279372fb3, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: ecb9ed18472e91e4a9841f3279372fb3, type: 2}
@@ -1026,6 +1083,16 @@ Prefab:
       propertyPath: InFlowingPump
       value: 
       objectReference: {fileID: 1849263467}
+    - target: {fileID: 114291324350689874, guid: 764b2fb4f37fd534bb78d2cc22e522bd,
+        type: 2}
+      propertyPath: Tank
+      value: 
+      objectReference: {fileID: 48865702}
+    - target: {fileID: 114291324350689874, guid: 764b2fb4f37fd534bb78d2cc22e522bd,
+        type: 2}
+      propertyPath: WaterTank
+      value: 
+      objectReference: {fileID: 264402965}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 764b2fb4f37fd534bb78d2cc22e522bd, type: 2}
   m_IsPrefabAsset: 0
@@ -1104,6 +1171,16 @@ Prefab:
       value: 
       objectReference: {fileID: 1725499476532774, guid: fc7a29672252882469119d551f50bc40,
         type: 2}
+    - target: {fileID: 114635232617175116, guid: ecb9ed18472e91e4a9841f3279372fb3,
+        type: 2}
+      propertyPath: Tank
+      value: 
+      objectReference: {fileID: 48865702}
+    - target: {fileID: 114635232617175116, guid: ecb9ed18472e91e4a9841f3279372fb3,
+        type: 2}
+      propertyPath: WaterTank
+      value: 
+      objectReference: {fileID: 264402965}
     m_RemovedComponents:
     - {fileID: 114201832724189754, guid: ecb9ed18472e91e4a9841f3279372fb3, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: ecb9ed18472e91e4a9841f3279372fb3, type: 2}
@@ -1760,6 +1837,16 @@ Prefab:
       value: 
       objectReference: {fileID: 1725499476532774, guid: fc7a29672252882469119d551f50bc40,
         type: 2}
+    - target: {fileID: 114635232617175116, guid: ecb9ed18472e91e4a9841f3279372fb3,
+        type: 2}
+      propertyPath: Tank
+      value: 
+      objectReference: {fileID: 48865702}
+    - target: {fileID: 114635232617175116, guid: ecb9ed18472e91e4a9841f3279372fb3,
+        type: 2}
+      propertyPath: WaterTank
+      value: 
+      objectReference: {fileID: 264402965}
     m_RemovedComponents:
     - {fileID: 114201832724189754, guid: ecb9ed18472e91e4a9841f3279372fb3, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: ecb9ed18472e91e4a9841f3279372fb3, type: 2}
@@ -2205,6 +2292,16 @@ Prefab:
       value: 
       objectReference: {fileID: 1725499476532774, guid: 0b930ff9be5789c46b653acb96396f6a,
         type: 2}
+    - target: {fileID: 114441962571396894, guid: 9c98cec72dcc6484b9854215ff2db438,
+        type: 2}
+      propertyPath: Tank
+      value: 
+      objectReference: {fileID: 48865702}
+    - target: {fileID: 114441962571396894, guid: 9c98cec72dcc6484b9854215ff2db438,
+        type: 2}
+      propertyPath: WaterTank
+      value: 
+      objectReference: {fileID: 264402965}
     m_RemovedComponents:
     - {fileID: 114127325393874920, guid: 9c98cec72dcc6484b9854215ff2db438, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: 9c98cec72dcc6484b9854215ff2db438, type: 2}
@@ -2312,6 +2409,21 @@ Prefab:
       value: 
       objectReference: {fileID: 1725499476532774, guid: a7c8d5c6b1750004e9eed10162e342d5,
         type: 2}
+    - target: {fileID: 114698971064820580, guid: 2c0771878fa98c542813384f180890d5,
+        type: 2}
+      propertyPath: PurityIndex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114698971064820580, guid: 2c0771878fa98c542813384f180890d5,
+        type: 2}
+      propertyPath: Tank
+      value: 
+      objectReference: {fileID: 48865702}
+    - target: {fileID: 114698971064820580, guid: 2c0771878fa98c542813384f180890d5,
+        type: 2}
+      propertyPath: WaterTank
+      value: 
+      objectReference: {fileID: 264402965}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2c0771878fa98c542813384f180890d5, type: 2}
   m_IsPrefabAsset: 0
@@ -2395,6 +2507,16 @@ Prefab:
       value: 
       objectReference: {fileID: 1725499476532774, guid: fc7a29672252882469119d551f50bc40,
         type: 2}
+    - target: {fileID: 114635232617175116, guid: ecb9ed18472e91e4a9841f3279372fb3,
+        type: 2}
+      propertyPath: Tank
+      value: 
+      objectReference: {fileID: 48865702}
+    - target: {fileID: 114635232617175116, guid: ecb9ed18472e91e4a9841f3279372fb3,
+        type: 2}
+      propertyPath: WaterTank
+      value: 
+      objectReference: {fileID: 264402965}
     m_RemovedComponents:
     - {fileID: 114201832724189754, guid: ecb9ed18472e91e4a9841f3279372fb3, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: ecb9ed18472e91e4a9841f3279372fb3, type: 2}
@@ -2561,6 +2683,11 @@ Prefab:
       propertyPath: TankCapacity
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 114299726853037410, guid: 6fb95b00634533e4aabdc54207e8830e,
+        type: 2}
+      propertyPath: WaterTank
+      value: 
+      objectReference: {fileID: 264402965}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6fb95b00634533e4aabdc54207e8830e, type: 2}
   m_IsPrefabAsset: 0
@@ -2629,6 +2756,16 @@ Prefab:
       value: 
       objectReference: {fileID: 1725499476532774, guid: a7c8d5c6b1750004e9eed10162e342d5,
         type: 2}
+    - target: {fileID: 114698971064820580, guid: 2c0771878fa98c542813384f180890d5,
+        type: 2}
+      propertyPath: Tank
+      value: 
+      objectReference: {fileID: 48865702}
+    - target: {fileID: 114698971064820580, guid: 2c0771878fa98c542813384f180890d5,
+        type: 2}
+      propertyPath: WaterTank
+      value: 
+      objectReference: {fileID: 264402965}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2c0771878fa98c542813384f180890d5, type: 2}
   m_IsPrefabAsset: 0
@@ -2775,6 +2912,16 @@ Prefab:
       value: 
       objectReference: {fileID: 1725499476532774, guid: fc7a29672252882469119d551f50bc40,
         type: 2}
+    - target: {fileID: 114635232617175116, guid: ecb9ed18472e91e4a9841f3279372fb3,
+        type: 2}
+      propertyPath: Tank
+      value: 
+      objectReference: {fileID: 48865702}
+    - target: {fileID: 114635232617175116, guid: ecb9ed18472e91e4a9841f3279372fb3,
+        type: 2}
+      propertyPath: WaterTank
+      value: 
+      objectReference: {fileID: 264402965}
     m_RemovedComponents:
     - {fileID: 114201832724189754, guid: ecb9ed18472e91e4a9841f3279372fb3, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: ecb9ed18472e91e4a9841f3279372fb3, type: 2}

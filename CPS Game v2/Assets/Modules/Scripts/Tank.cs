@@ -13,6 +13,24 @@ public class Tank : Module
     [Range(1, 10)]
     public int TankCapacity = 5;
 
+
+    public override void Tick()
+    {
+        if (this.InFlowingPump.On)
+        {
+            this.OnFlow();
+        }
+
+        /*if (Water.Amount > this.Capacity)
+        {
+            this.OnOverflow();
+        }*/
+
+        this.UpdatePopupDisplay();
+        if (this.PreviousModule)
+            this.PreviousModule.Tick();
+    }
+
     /// <summary>
     /// Check if inpump is on. Bring in unit of water from previous
     /// Adds water if incoming pump is on
@@ -32,6 +50,6 @@ public class Tank : Module
     //create object behind tank to look like spilled water
     protected override void OnOverflow()
     {
-        //overFlowSprite.SetActive(true);
+        
     }
 }

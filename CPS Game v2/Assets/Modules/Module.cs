@@ -21,6 +21,8 @@ public abstract class Module : MonoBehaviour
 
     public WaterObject Water;
 
+    public Tank WaterTank;
+
     public virtual int Capacity
     {
         get { return 3; }
@@ -86,6 +88,11 @@ public abstract class Module : MonoBehaviour
 
     public virtual void Tick()
     {
+        if (this.gameObject == this.WaterTank.gameObject) //ticks if before tank
+        {
+            return;
+        }
+
         if (this.InFlowingPump.On)
         {
             this.OnFlow();

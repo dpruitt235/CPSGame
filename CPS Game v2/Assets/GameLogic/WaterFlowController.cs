@@ -9,6 +9,8 @@ public class WaterFlowController : MonoBehaviour
 {
     public Reservoir Reservoir;
 
+    public Tank WaterTank;
+
     private Module firstModule;
 
     private void Start()
@@ -29,6 +31,7 @@ public class WaterFlowController : MonoBehaviour
     public void TickModules()
     {
         this.Reservoir.Tick();
+        this.WaterTank.Tick();
         this.firstModule.Water = new WaterObject();
     }
 

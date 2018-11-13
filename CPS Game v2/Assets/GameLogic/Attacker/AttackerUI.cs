@@ -9,7 +9,7 @@ public class AttackerUI : MonoBehaviour
     private void Start()
     {
         this.gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
-        this.panelText = GameObject.FindGameObjectWithTag("Attacker").GetComponent<Text>();
+        //this.panelText = GameObject.FindGameObjectWithTag("Attacker").GetComponent<Text>();
     }
 
     /// <summary>
