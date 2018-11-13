@@ -17,6 +17,6 @@ public class AttackerUI : MonoBehaviour
     /// </summary>
     private void Update()
     {
-        this.panelText.text = "Available Attacks: " + this.gameController.NumAvailableAttacks;
+        //this.panelText.text = "Available Attacks: " + this.gameController.NumAvailableAttacks;
     }
 }

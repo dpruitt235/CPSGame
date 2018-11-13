@@ -14,8 +14,17 @@ public class Reservoir : Module
         if (this.PreviousModule.Water != null)
         {
             this.WaterList.Add(this.PreviousModule.Water);
-            Debug.Log(WaterList.Count);
         }
-        Debug.Log(WaterList.Count);
+    }
+
+    public override string ToString()
+    {
+        string result = "";
+        foreach (WaterObject w in this.WaterList)
+        {
+            result += "; " + w.purity[0] + ", " + w.purity[1] + ", " + w.purity[2];
+        }
+
+        return result;
     }
 }

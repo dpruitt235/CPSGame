@@ -1,11 +1,19 @@
 ﻿public class Filter : Module
 {
-    /// <summary>
-    /// If the filter is attacked, it is clogged and water will not flow through
-    /// </summary>
+    public int PurityIndex;
+    
     protected override void OnFlow()
     {
         if (!this.Attacked)
+        {
+            if (this.Water != null) this.Water.purity[this.PurityIndex] = true;
+            base.OnFlow();
+        }
+        else if (this.AttackDropdowns[0].value == 0) //CLOG
+        {
+
+        }
+        else //Disable
         {
             base.OnFlow();
         }

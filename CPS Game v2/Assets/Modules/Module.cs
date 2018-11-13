@@ -12,7 +12,6 @@ public abstract class Module : MonoBehaviour
 {
     public GameObject popupPrefab;
     public GameObject AttackedIndicator;
-    public GameObject AttackedDropdown;
 
     public Module PreviousModule;
 
@@ -33,6 +32,8 @@ public abstract class Module : MonoBehaviour
 	private GameObject popupInstance;
 	private Text displayTextTitle;
 	private Text displayTextContent;
+
+    protected Dropdown[] AttackDropdowns;
 
     private GameObject attackedIndicatorInstance;
     private Canvas rootCanvas;
@@ -74,6 +75,8 @@ public abstract class Module : MonoBehaviour
             this.AttackedIndicator.transform.rotation);
         this.attackedIndicatorInstance.transform.SetParent(GameObject.FindGameObjectWithTag("Attacker").transform);
         this.attackedIndicatorInstance.SetActive(false);
+
+        this.AttackDropdowns = this.attackedIndicatorInstance.GetComponentsInChildren<Dropdown>();
 	}
 
     protected void Start()
@@ -83,12 +86,7 @@ public abstract class Module : MonoBehaviour
 
     public virtual void Tick()
     {
-        if (this.PreviousModule && this.PreviousModule.Attacked)
-        {
-            Water = null;
-            Debug.Log("Water set to null");
-        }
-        else if (this.InFlowingPump.On)
+        if (this.InFlowingPump.On)
         {
             this.OnFlow();
         }
@@ -109,9 +107,10 @@ public abstract class Module : MonoBehaviour
     /// </summary>
     protected virtual void OnFlow()
     {
-        if (this.PreviousModule)
+        if (this.PreviousModule && this.Water == null)
         {
-            Water = this.PreviousModule.Water;
+            this.Water = this.PreviousModule.Water;
+            this.PreviousModule.Water = null;
         }
     }
 
@@ -131,7 +130,6 @@ public abstract class Module : MonoBehaviour
         this.Attacked = true;
         this.attackedIndicatorInstance.SetActive(true);
         this.gameController.NumAvailableAttacks--;
-        
     }
 
     /// <summary>

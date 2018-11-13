@@ -8,7 +8,10 @@ public class TankPipe : Module {
 
     protected override void OnFlow()
     {
-        this.Water = tank.WaterList[0];
-        tank.WaterList.RemoveAt(0);
+        if (tank.WaterList.Count > 0)
+        {
+            this.Water = tank.WaterList[0];
+            tank.WaterList.RemoveAt(0);
+        }
     }
 }
