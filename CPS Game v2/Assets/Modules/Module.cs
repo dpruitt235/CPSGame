@@ -79,8 +79,7 @@ public abstract class Module : MonoBehaviour
         var cancelAttackButton = this.attackedIndicatorInstance.GetComponentInChildren<Button>();
         if (cancelAttackButton)
         {
-            print("Cancel button init.");
-            cancelAttackButton.onClick.AddListener(delegate { print("howdy"); this.ReverseAttack(); });
+            cancelAttackButton.onClick.AddListener(delegate { this.ReverseAttack(); });
         }
 	}
 

@@ -6,8 +6,8 @@
     {
         if (!this.Attacked)
         {
-            if (this.Water != null) this.Water.purity[this.PurityIndex] = true;
             base.OnFlow();
+            if (this.Water != null) this.Water.purity[this.PurityIndex] = true;
         }
         else if (this.AttackDropdowns[0].value == 0) //CLOG
         {

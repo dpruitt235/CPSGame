@@ -2776,6 +2776,10 @@ Prefab:
       propertyPath: WaterTank
       value: 
       objectReference: {fileID: 264402965}
+    - target: {fileID: 4396514659626052, guid: 2c0771878fa98c542813384f180890d5, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 1.1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2c0771878fa98c542813384f180890d5, type: 2}
   m_IsPrefabAsset: 0
