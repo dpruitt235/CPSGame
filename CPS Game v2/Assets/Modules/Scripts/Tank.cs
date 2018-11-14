@@ -10,25 +10,19 @@ public class Tank : Module
 
     public List<WaterObject> WaterList = new List<WaterObject>();
 
+    public int Fill {
+        get {
+            return WaterList.Count;
+        }
+     }
+
     [Range(1, 10)]
     public int TankCapacity = 5;
 
-
-    public override void Tick()
+    private new void Start()
     {
-        if (this.InFlowingPump.On)
-        {
-            this.OnFlow();
-        }
-
-        /*if (Water.Amount > this.Capacity)
-        {
-            this.OnOverflow();
-        }*/
-
-        this.UpdatePopupDisplay();
-        if (this.PreviousModule)
-            this.PreviousModule.Tick();
+        this.displayFields.Add("Fill");
+        base.Start();
     }
 
     /// <summary>

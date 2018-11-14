@@ -111,8 +111,7 @@ public class GameController : MonoBehaviour
 
         ScreenCover.gameObject.GetComponentsInChildren<Text>()[0].text = TurnText.text;
         ScreenCover.gameObject.GetComponentsInChildren<Text>()[0].color = TurnText.color;
-
-        print(this.Reservoir);
+        
         StartCoroutine(WaitForClick());
     }
 
