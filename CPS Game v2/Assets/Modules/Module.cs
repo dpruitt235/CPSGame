@@ -1,5 +1,4 @@
-﻿
-using System.Reflection;
+﻿using System.Reflection;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -77,6 +76,12 @@ public abstract class Module : MonoBehaviour
         this.attackedIndicatorInstance.SetActive(false);
 
         this.AttackDropdowns = this.attackedIndicatorInstance.GetComponentsInChildren<Dropdown>();
+        var cancelAttackButton = this.attackedIndicatorInstance.GetComponentInChildren<Button>();
+        if (cancelAttackButton)
+        {
+            print("Cancel button init.");
+            cancelAttackButton.onClick.AddListener(delegate { print("howdy"); this.ReverseAttack(); });
+        }
 	}
 
     protected void Start()
@@ -144,6 +149,16 @@ public abstract class Module : MonoBehaviour
         }
     }
 
+    public void ReverseAttack()
+    {
+        print("Reversing attack");
+        if (this.Attacked)
+        {
+            this.gameController.NumAvailableAttacks++;
+            this.Fix();
+        }
+    }
+
     /// <summary>
     /// Defines interaction with mouse
     /// </summary>
@@ -153,17 +168,9 @@ public abstract class Module : MonoBehaviour
         {
             if (this.gameController && this.gameController.GameState == GameState.AttackerTurn)
             {
-                if (this.Attacked)
+                if (!this.Attacked && this.gameController.NumAvailableAttacks > 0)
                 {
-                    this.gameController.NumAvailableAttacks++;
-                    this.Fix();
-                }
-                else
-                {
-                    if (this.gameController.NumAvailableAttacks > 0)
-                    {
-                        this.Attack();
-                    }
+                    this.Attack();
                 }
             }
         }

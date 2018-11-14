@@ -228,7 +228,7 @@ MonoBehaviour:
   PreviousModule: {fileID: 264402965}
   InFlowingPump: {fileID: 1849263467}
   Attacked: 0
-  WaterTank: {fileID: 264402965}
+  b: {fileID: 0}
   tank: {fileID: 264402965}
 --- !u!1 &170076733
 GameObject:
@@ -933,7 +933,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Reservoir: {fileID: 1177941902}
-  WaterTank: {fileID: 264402965}
 --- !u!4 &689642307
 Transform:
   m_ObjectHideFlags: 0
@@ -2290,7 +2289,7 @@ Prefab:
         type: 2}
       propertyPath: AttackedIndicator
       value: 
-      objectReference: {fileID: 1725499476532774, guid: 0b930ff9be5789c46b653acb96396f6a,
+      objectReference: {fileID: 1526287771116542, guid: 13510de13fb77f44f91781793eba518b,
         type: 2}
     - target: {fileID: 114441962571396894, guid: 9c98cec72dcc6484b9854215ff2db438,
         type: 2}
