@@ -132,7 +132,7 @@ public abstract class Module : MonoBehaviour
     /// <summary>
     /// What to do when the attacker attacks the module
     /// </summary>
-    public void Attack()
+    public virtual void Attack()
     {
         this.Attacked = true;
         this.attackedIndicatorInstance.SetActive(true);
