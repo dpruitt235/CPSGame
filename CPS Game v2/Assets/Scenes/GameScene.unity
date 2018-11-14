@@ -223,12 +223,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   popupPrefab: {fileID: 1771340278282874, guid: 20825e5a22a5815499c875070af46bdd,
     type: 2}
-  AttackedIndicator: {fileID: 1725499476532774, guid: fc7a29672252882469119d551f50bc40,
+  AttackedIndicator: {fileID: 1322095868030548, guid: 569b7672bd0bcac45b82f9ed902d9677,
     type: 2}
   PreviousModule: {fileID: 264402965}
   InFlowingPump: {fileID: 1849263467}
   Attacked: 0
-  b: {fileID: 0}
   tank: {fileID: 264402965}
 --- !u!1 &170076733
 GameObject:
@@ -370,7 +369,7 @@ Prefab:
         type: 2}
       propertyPath: AttackedIndicator
       value: 
-      objectReference: {fileID: 1725499476532774, guid: 0b930ff9be5789c46b653acb96396f6a,
+      objectReference: {fileID: 1914122660386784, guid: 203f1d3eb04a4134097c3deb1ad2388b,
         type: 2}
     - target: {fileID: 114127325393874920, guid: 9c98cec72dcc6484b9854215ff2db438,
         type: 2}
@@ -785,7 +784,7 @@ Prefab:
         type: 2}
       propertyPath: AttackedIndicator
       value: 
-      objectReference: {fileID: 1725499476532774, guid: fc7a29672252882469119d551f50bc40,
+      objectReference: {fileID: 1322095868030548, guid: 569b7672bd0bcac45b82f9ed902d9677,
         type: 2}
     - target: {fileID: 114635232617175116, guid: ecb9ed18472e91e4a9841f3279372fb3,
         type: 2}
@@ -874,7 +873,7 @@ Prefab:
         type: 2}
       propertyPath: AttackedIndicator
       value: 
-      objectReference: {fileID: 1725499476532774, guid: a7c8d5c6b1750004e9eed10162e342d5,
+      objectReference: {fileID: 1164278659561984, guid: 17de28dbbef814648b23e6bd07559d2f,
         type: 2}
     - target: {fileID: 114698971064820580, guid: 2c0771878fa98c542813384f180890d5,
         type: 2}
@@ -1017,7 +1016,7 @@ Prefab:
         type: 2}
       propertyPath: AttackedIndicator
       value: 
-      objectReference: {fileID: 1725499476532774, guid: fc7a29672252882469119d551f50bc40,
+      objectReference: {fileID: 1322095868030548, guid: 569b7672bd0bcac45b82f9ed902d9677,
         type: 2}
     - target: {fileID: 114635232617175116, guid: ecb9ed18472e91e4a9841f3279372fb3,
         type: 2}
@@ -1092,6 +1091,12 @@ Prefab:
       propertyPath: WaterTank
       value: 
       objectReference: {fileID: 264402965}
+    - target: {fileID: 114291324350689874, guid: 764b2fb4f37fd534bb78d2cc22e522bd,
+        type: 2}
+      propertyPath: AttackedIndicator
+      value: 
+      objectReference: {fileID: 1078295789442830, guid: 1fd4d32da713a684ca2915bdd3df3842,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 764b2fb4f37fd534bb78d2cc22e522bd, type: 2}
   m_IsPrefabAsset: 0
@@ -1168,7 +1173,7 @@ Prefab:
         type: 2}
       propertyPath: AttackedIndicator
       value: 
-      objectReference: {fileID: 1725499476532774, guid: fc7a29672252882469119d551f50bc40,
+      objectReference: {fileID: 1322095868030548, guid: 569b7672bd0bcac45b82f9ed902d9677,
         type: 2}
     - target: {fileID: 114635232617175116, guid: ecb9ed18472e91e4a9841f3279372fb3,
         type: 2}
@@ -1834,7 +1839,7 @@ Prefab:
         type: 2}
       propertyPath: AttackedIndicator
       value: 
-      objectReference: {fileID: 1725499476532774, guid: fc7a29672252882469119d551f50bc40,
+      objectReference: {fileID: 1322095868030548, guid: 569b7672bd0bcac45b82f9ed902d9677,
         type: 2}
     - target: {fileID: 114635232617175116, guid: ecb9ed18472e91e4a9841f3279372fb3,
         type: 2}
@@ -2289,7 +2294,7 @@ Prefab:
         type: 2}
       propertyPath: AttackedIndicator
       value: 
-      objectReference: {fileID: 1526287771116542, guid: 13510de13fb77f44f91781793eba518b,
+      objectReference: {fileID: 1914122660386784, guid: 203f1d3eb04a4134097c3deb1ad2388b,
         type: 2}
     - target: {fileID: 114441962571396894, guid: 9c98cec72dcc6484b9854215ff2db438,
         type: 2}
@@ -2406,7 +2411,7 @@ Prefab:
         type: 2}
       propertyPath: AttackedIndicator
       value: 
-      objectReference: {fileID: 1725499476532774, guid: a7c8d5c6b1750004e9eed10162e342d5,
+      objectReference: {fileID: 1164278659561984, guid: 17de28dbbef814648b23e6bd07559d2f,
         type: 2}
     - target: {fileID: 114698971064820580, guid: 2c0771878fa98c542813384f180890d5,
         type: 2}
@@ -2504,7 +2509,7 @@ Prefab:
         type: 2}
       propertyPath: AttackedIndicator
       value: 
-      objectReference: {fileID: 1725499476532774, guid: fc7a29672252882469119d551f50bc40,
+      objectReference: {fileID: 1322095868030548, guid: 569b7672bd0bcac45b82f9ed902d9677,
         type: 2}
     - target: {fileID: 114635232617175116, guid: ecb9ed18472e91e4a9841f3279372fb3,
         type: 2}
@@ -2687,6 +2692,12 @@ Prefab:
       propertyPath: WaterTank
       value: 
       objectReference: {fileID: 264402965}
+    - target: {fileID: 114299726853037410, guid: 6fb95b00634533e4aabdc54207e8830e,
+        type: 2}
+      propertyPath: AttackedIndicator
+      value: 
+      objectReference: {fileID: 1078295789442830, guid: 1fd4d32da713a684ca2915bdd3df3842,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6fb95b00634533e4aabdc54207e8830e, type: 2}
   m_IsPrefabAsset: 0
@@ -2753,7 +2764,7 @@ Prefab:
         type: 2}
       propertyPath: AttackedIndicator
       value: 
-      objectReference: {fileID: 1725499476532774, guid: a7c8d5c6b1750004e9eed10162e342d5,
+      objectReference: {fileID: 1164278659561984, guid: 17de28dbbef814648b23e6bd07559d2f,
         type: 2}
     - target: {fileID: 114698971064820580, guid: 2c0771878fa98c542813384f180890d5,
         type: 2}
@@ -2909,7 +2920,7 @@ Prefab:
         type: 2}
       propertyPath: AttackedIndicator
       value: 
-      objectReference: {fileID: 1725499476532774, guid: fc7a29672252882469119d551f50bc40,
+      objectReference: {fileID: 1322095868030548, guid: 569b7672bd0bcac45b82f9ed902d9677,
         type: 2}
     - target: {fileID: 114635232617175116, guid: ecb9ed18472e91e4a9841f3279372fb3,
         type: 2}
