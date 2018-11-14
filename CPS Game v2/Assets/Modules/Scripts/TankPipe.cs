@@ -11,7 +11,11 @@ public class TankPipe : Module {
         if (tank.WaterList.Count > 0)
         {
             this.Water = tank.WaterList[0];
-            tank.WaterList.RemoveAt(0);
+            tank.WaterList.Remove(this.Water);
+        }
+        else
+        {
+            this.Water = null;
         }
     }
 }

@@ -40,6 +40,7 @@ public class Tank : Module
         if(this.PreviousModule && PreviousModule.Water != null)
         {
             WaterList.Add(this.PreviousModule.Water);
+            this.PreviousModule.Water = null;
             if(WaterList.Count > TankCapacity)
             {
                 OnOverflow();

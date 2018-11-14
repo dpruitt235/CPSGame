@@ -14,6 +14,7 @@ public class Reservoir : Module
         if (this.PreviousModule.Water != null)
         {
             this.WaterList.Add(this.PreviousModule.Water);
+            this.PreviousModule.Water = null;
         }
     }
 
