@@ -13,9 +13,13 @@ public class Pump : Module
             {
                 return this.on;
             }
-            else
+            else if (this.AttackDropdowns[0].value == 1)
             {
                 return false;
+            }
+            else
+            {
+                return true;
             }
         }
         set {
