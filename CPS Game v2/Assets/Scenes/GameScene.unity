@@ -1448,7 +1448,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WaterFlowController: {fileID: 689642306}
   SceneLoader: {fileID: 1663656656}
-  OraclePrefab: {fileID: 1151573525474462, guid: 2f3523011a04e6f40aa95f958c2abf53,
+  OraclePrefab: {fileID: 1229390187271172, guid: 555c3370b98e8514684f3caa8a95a082,
     type: 2}
   OracleSpawnPoint: {x: -3, y: 3.5, z: 0}
   AttackerUI: {fileID: 1402154358}

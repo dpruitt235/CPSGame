@@ -179,7 +179,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3432e6b72dd297f46a0ba48da398900a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  FloatingTextPreFab: {fileID: 0}
   InputActive: 0
+  messageText: Stopped an attack!
+  OraclePopupPrefab: {fileID: 1255655405969136, guid: 4d3cdc8b264c643f49cb5ebafd696d74,
+    type: 2}
 --- !u!114 &114941930039743850
 MonoBehaviour:
   m_ObjectHideFlags: 1

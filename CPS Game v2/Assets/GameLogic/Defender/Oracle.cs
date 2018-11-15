@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEditor;
 
 /// <summary>
@@ -8,13 +9,15 @@ using UnityEditor;
 /// </summary>
 public class Oracle : MonoBehaviour
 {
-    public GameObject FloatingTextPreFab;
     public bool InputActive = false;
     public string messageText = "Stopped an attack!";
 
     public Plane MovementPlane;
 
+    public GameObject OraclePopupPrefab;
+
     private Valuation firstValuation, secondValuation;
+
     
     private void Awake()
     {
@@ -72,42 +75,76 @@ public class Oracle : MonoBehaviour
             firstModule = this.secondValuation.CurrentSelection;
             secondModule = this.firstValuation.CurrentSelection;
         }
-
-        //Successful attack if all modules between the two modules are attacked
-        bool successfulDefense = true;
-        var mods = new List<Module>();
-        if (!firstModule.Attacked && !secondModule.Attacked)
+        
+        if (!this.ModuleMatchesExpected(firstModule, firstValuation))
         {
-            var currModule = secondModule.PreviousModule;
-            while (currModule != firstModule)
-            {
-                if (!currModule.Attacked)
-                {
-                    successfulDefense = false;
-                    break;
-                }
-                else {
-                    mods.Add(currModule);
-                }
-
-                currModule = currModule.PreviousModule;
-            }
+            this.firstValuation.RuleIndicator.gameObject.SetActive(true);
         }
         else
         {
-            successfulDefense = false;
+            this.firstValuation.RuleIndicator.gameObject.SetActive(false);
         }
 
-        if (successfulDefense)
+        if (!this.ModuleMatchesExpected(secondModule, secondValuation))
         {
-            mods.ForEach(m => m.Fix());
-            if(FloatingTextPreFab !=null)
-                ShowFloatingText(messageText);
+            this.secondValuation.RuleIndicator.gameObject.SetActive(true);
         }
+        else
+        {
+            this.secondValuation.RuleIndicator.gameObject.SetActive(false);
+        }
+
+        ////Successful attack if all modules between the two modules are attacked
+        //bool successfulDefense = true;
+        //var mods = new List<Module>();
+        //if (!firstModule.Attacked && !secondModule.Attacked)
+        //{
+        //    var currModule = secondModule.PreviousModule;
+        //    while (currModule != firstModule)
+        //    {
+        //        if (!currModule.Attacked)
+        //        {
+        //            successfulDefense = false;
+        //            break;
+        //        }
+        //        else {
+        //            mods.Add(currModule);
+        //        }
+
+        //        currModule = currModule.PreviousModule;
+        //    }
+        //}
+        //else
+        //{
+        //    successfulDefense = false;
+        //}
+
+        //if (successfulDefense)
+        //{
+        //    mods.ForEach(m => m.Fix());
+        //    if(FloatingTextPreFab !=null)
+        //        ShowFloatingText(messageText);
+        //}
     }
-    void ShowFloatingText(string message)
+
+    private bool ModuleMatchesExpected(Module m, Valuation v)
     {
-        var go = Instantiate(FloatingTextPreFab, transform.position, Quaternion.identity, transform);
-        go.GetComponent<TextMesh>().text = message;
+        if ((m.Water != null) == (v.dropdowns[0].value == 0))
+        {
+            if (m.Water == null) return true;
+
+            if ((m.Water.purity[0]) == (v.dropdowns[1].value == 0))
+            {
+                if ((m.Water.purity[1]) == (v.dropdowns[2].value == 0))
+                {
+                    if ((m.Water.purity[2]) == (v.dropdowns[3].value == 0))
+                    {
+                        return true;
+                    }
+                }
+            }
+        }
+
+        return false;
     }
-}
+    }

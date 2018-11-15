@@ -150,7 +150,6 @@ public abstract class Module : MonoBehaviour
 
     public void ReverseAttack()
     {
-        print("Reversing attack");
         if (this.Attacked)
         {
             this.gameController.NumAvailableAttacks++;
