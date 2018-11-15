@@ -5,6 +5,13 @@ CPS Game/[Bb]uild/
 CPS Game/[Bb]uilds/
 CPS Game/Assets/AssetStoreTools*
 
+CPS Game v2/[Ll]ibrary/
+CPS Game v2/[Tt]emp/
+CPS Game v2/[Oo]bj/
+CPS Game v2/[Bb]uild/
+CPS Game v2/[Bb]uilds/
+CPS Game v2/Assets/AssetStoreTools*
+
 # Visual Studio cache directory
 .vs/
 
