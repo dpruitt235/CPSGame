@@ -76,7 +76,7 @@ public class GameController : MonoBehaviour
 
         if (this.GameState == GameState.AttackerTurn)
         {
-            this.oracles.ForEach(o => o.InputActive = true);
+            
             this.GameState = GameState.DefenderTurn;
             this.AttackerUI.SetActive(false);
             TurnText.text = "Defender's Turn";
@@ -159,5 +159,10 @@ public class GameController : MonoBehaviour
 
         ActiveTurn = true;
         StartTurnTimer = DateTime.Now;
+        if (this.GameState == GameState.DefenderTurn)
+        {
+            this.oracles.ForEach(o => o.InputActive = true);
+            Debug.Log("Set active");
+        }
     }
 }
