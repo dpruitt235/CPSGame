@@ -162,7 +162,6 @@ public class GameController : MonoBehaviour
         if (this.GameState == GameState.DefenderTurn)
         {
             this.oracles.ForEach(o => o.InputActive = true);
-            Debug.Log("Set active");
         }
     }
 }
