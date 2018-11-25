@@ -17,7 +17,6 @@ public class Oracle : MonoBehaviour
     public GameObject OraclePopupPrefab;
 
     private Valuation firstValuation, secondValuation;
-
     
     private void Awake()
     {
@@ -64,6 +63,9 @@ public class Oracle : MonoBehaviour
             return;
         }
 
+        //used to decide which to fix on
+        bool firstVal = false; //false = first  true = second
+        
         Module firstModule, secondModule;
         if (this.firstValuation.CurrentSelection < this.secondValuation.CurrentSelection)
         {
@@ -74,11 +76,17 @@ public class Oracle : MonoBehaviour
         {
             firstModule = this.secondValuation.CurrentSelection;
             secondModule = this.firstValuation.CurrentSelection;
+            firstVal = true;
         }
-        
+
+        firstValuation.RuleIndicator.text = "RULE BROKEN";
+        secondValuation.RuleIndicator.text = "RULE BROKEN";
+
         if (!this.ModuleMatchesExpected(firstModule, firstValuation))
         {
             this.firstValuation.RuleIndicator.gameObject.SetActive(true);
+            if(firstVal)
+                this.FixAttackedModule(firstModule, secondModule, firstValuation);
         }
         else
         {
@@ -88,6 +96,8 @@ public class Oracle : MonoBehaviour
         if (!this.ModuleMatchesExpected(secondModule, secondValuation))
         {
             this.secondValuation.RuleIndicator.gameObject.SetActive(true);
+            if(!firstVal)
+                this.FixAttackedModule(firstModule, secondModule, secondValuation);
         }
         else
         {
@@ -139,6 +149,7 @@ public class Oracle : MonoBehaviour
                 {
                     if ((m.Water.purity[2]) == (v.dropdowns[3].value == 0))
                     {
+                        
                         return true;
                     }
                 }
@@ -146,5 +157,29 @@ public class Oracle : MonoBehaviour
         }
 
         return false;
+    }
+
+    /// <summary>
+    /// Fixes a module if rules have caught an error. Only fixes if in span of 3 modules.
+    /// </summary>
+    private void FixAttackedModule(Module first, Module second, Valuation val)
+    {
+        Module ToFix;
+
+        if (first == second)
+        {
+            return;
+        }
+        
+        ToFix = second.PreviousModule;
+        if(ToFix.PreviousModule != null && ToFix.PreviousModule == first)
+        {
+            val.RuleIndicator.text = "FIXED ATTACK";
+            ToFix.Fix();
+        }
+        else
+        {
+            return;
+        }
     }
     }

@@ -88,14 +88,15 @@ public class GameController : MonoBehaviour
             this.NumAvailableAttacks = this.NumberOfAttacksPerTurn;
 
             this.AttackerUI.SetActive(true);
+
+            for (int i = 0; i < 13; i++) {
+                this.WaterFlowController.TickModules();
+            }
+
             foreach (Oracle o in this.oracles)
             {
                 o.InputActive = false;
                 o.ApplyRule();
-            }
-
-            for (int i = 0; i < 13; i++) {
-                this.WaterFlowController.TickModules();
             }
 
             if (++Turn >= TurnLimit)
@@ -103,7 +104,7 @@ public class GameController : MonoBehaviour
                 Results.ReservoirFill = Reservoir.WaterList.Count;
                 this.SceneLoader.LoadNextScene();
             }
-            ReservoirCounter.text = Reservoir.WaterList.Count.ToString() + "/" + ReservoirLimit;
+            ReservoirCounter.text = Reservoir.WaterList.Count.ToString();
             TurnCounter.text = "Turn: " + Turn + "/" + TurnLimit;
             TurnText.text = "Attacker's Turn";
             TurnText.color = new Color(1F, 0, 0);
