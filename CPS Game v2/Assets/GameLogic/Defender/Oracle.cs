@@ -174,7 +174,10 @@ public class Oracle : MonoBehaviour
         ToFix = second.PreviousModule;
         if(ToFix.PreviousModule != null && ToFix.PreviousModule == first)
         {
-            val.RuleIndicator.text = "FIXED ATTACK";
+            if(ToFix.Attacked)
+            {
+                val.RuleIndicator.text = "FIXED ATTACK";
+            }
             ToFix.Fix();
         }
         else
