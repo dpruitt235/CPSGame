@@ -47,7 +47,7 @@ public class GameController : MonoBehaviour
 
     private List<Oracle> oracles;
 
-    private void Awake()
+    protected void Awake()
     {
         this.NumAvailableAttacks = this.NumberOfAttacksPerTurn;
         Results.ReservoirLimit = ReservoirLimit;
@@ -57,7 +57,7 @@ public class GameController : MonoBehaviour
         ScreenCover.fillCenter = true;
     }
 
-    private void Start()
+    protected void Start()
     {
         for (int i = 0; i < this.NumberOfOracles; i++)
         {
@@ -116,7 +116,7 @@ public class GameController : MonoBehaviour
         StartCoroutine(WaitForClick());
     }
 
-    void Update()
+    protected void Update()
     {
         if (ActiveTurn)
         {
@@ -144,7 +144,7 @@ public class GameController : MonoBehaviour
         }
     }
 
-    IEnumerator WaitForClick()
+    protected IEnumerator WaitForClick()
     {
         ScreenCover.gameObject.SetActive(true);
         GameUI.SetActive(false);
