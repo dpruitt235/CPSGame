@@ -1,7 +1,9 @@
 ﻿public class Filter : Module
 {
     public int PurityIndex;
-    
+    /// <summary>
+    /// This onflow override cleans water when passed through based on a specified purity index set on the filter object.
+    /// </summary>
     protected override void OnFlow()
     {
         if (!this.Attacked)

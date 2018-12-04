@@ -88,6 +88,9 @@ public abstract class Module : MonoBehaviour
         this.gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
     }
 
+    /// <summary>
+    /// Moves water through system if specified pump is on. Then calls Tick for previous module.
+    /// </summary>
     public virtual void Tick()
     {
         if (this.InFlowingPump.On)
@@ -148,6 +151,9 @@ public abstract class Module : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Adds back an attack and fixes attacked module.
+    /// </summary>
     public void ReverseAttack()
     {
         if (this.Attacked)

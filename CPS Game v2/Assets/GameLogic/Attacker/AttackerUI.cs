@@ -9,7 +9,7 @@ public class AttackerUI : MonoBehaviour
     private void Start()
     {
         this.gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
-        //this.panelText = GameObject.FindGameObjectWithTag("Attacker").GetComponent<Text>();
+        this.panelText = GameObject.FindGameObjectWithTag("Attacker").GetComponent<Text>();
     }
 
     /// <summary>
@@ -17,6 +17,6 @@ public class AttackerUI : MonoBehaviour
     /// </summary>
     private void Update()
     {
-        //this.panelText.text = "Available Attacks: " + this.gameController.NumAvailableAttacks;
+        this.panelText.text = "Available Attacks: " + this.gameController.NumAvailableAttacks;
     }
 }
