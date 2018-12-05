@@ -16,10 +16,10 @@ public class TextController : MonoBehaviour {
             VictorTextbox.color = new Color(0.45f, 0.75f, 1f);
             VictorTextbox.text = "Defender Wins!";
         }
-        ReservoirFillTextbox.text = "Reservoir Fill: " + Results.ReservoirFill + "/" + Results.ReservoirLimit;
+        ReservoirFillTextbox.text = "Reservoir Fill: " + Results.ReservoirFill;
 
-        Reservoir.transform.localPosition += Vector3.up * Results.ReservoirFill/6F;
-        Reservoir.transform.localScale += Vector3.up * Results.ReservoirFill/3F;
+        Reservoir.transform.localPosition += Vector3.up * Results.ReservoirFill/150F;
+        Reservoir.transform.localScale += Vector3.up * Results.ReservoirFill/75F;
 
         if (Results.ReservoirFill == 0)
         {
