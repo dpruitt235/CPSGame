@@ -34,6 +34,48 @@ public abstract class Module : MonoBehaviour
 
     protected Dropdown[] AttackDropdowns;
 
+    public bool HasFlow {
+        get {
+            return this.Water != null;
+        }
+    }
+    public bool Purity1 {
+        get {
+            if (this.Attacked && this.GetType() == typeof(Pipe))
+            {
+                return this.AttackDropdowns[1].value == 0;
+            }
+            else
+            {
+                return this.Water.purity[0];
+            }
+        }
+    }
+    public bool Purity2 {
+        get {
+            if (this.Attacked && this.GetType() == typeof(Pipe))
+            {
+                return this.AttackDropdowns[2].value == 0;
+            }
+            else
+            {
+                return this.Water.purity[1];
+            }
+        }
+    }
+    public bool Purity3 {
+        get {
+            if (this.Attacked && this.GetType() == typeof(Pipe))
+            {
+                return this.AttackDropdowns[3].value == 0;
+            }
+            else
+            {
+                return this.Water.purity[2];
+            }
+        }
+    }
+
     private GameObject attackedIndicatorInstance;
     private Canvas rootCanvas;
 

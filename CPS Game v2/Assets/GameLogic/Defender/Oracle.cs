@@ -139,15 +139,15 @@ public class Oracle : MonoBehaviour
 
     private bool ModuleMatchesExpected(Module m, Valuation v)
     {
-        if ((m.Water != null) == (v.dropdowns[0].value == 0))
+        if ((m.HasFlow) == (v.dropdowns[0].value == 0))
         {
-            if (m.Water == null) return true;
+            if (!m.HasFlow) return true;
 
-            if ((m.Water.purity[0]) == (v.dropdowns[1].value == 0))
+            if ((m.Purity1) == (v.dropdowns[1].value == 0))
             {
-                if ((m.Water.purity[1]) == (v.dropdowns[2].value == 0))
+                if ((m.Purity2) == (v.dropdowns[2].value == 0))
                 {
-                    if ((m.Water.purity[2]) == (v.dropdowns[3].value == 0))
+                    if ((m.Purity3) == (v.dropdowns[3].value == 0))
                     {
                         
                         return true;
