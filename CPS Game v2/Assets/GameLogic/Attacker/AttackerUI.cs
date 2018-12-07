@@ -5,7 +5,7 @@ public class AttackerUI : MonoBehaviour
 {
     private GameController gameController;
     private Text panelText;
-
+    
     private void Start()
     {
         this.gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
@@ -17,6 +17,7 @@ public class AttackerUI : MonoBehaviour
     /// </summary>
     private void Update()
     {
-        this.panelText.text = "Available Attacks: " + this.gameController.NumAvailableAttacks;
+        if (this.panelText && this.gameController)
+            this.panelText.text = "Available Attacks: " + this.gameController.NumAvailableAttacks;
     }
 }

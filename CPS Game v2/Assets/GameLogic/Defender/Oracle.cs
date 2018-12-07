@@ -82,26 +82,26 @@ public class Oracle : MonoBehaviour
         firstValuation.RuleIndicator.text = "RULE BROKEN";
         secondValuation.RuleIndicator.text = "RULE BROKEN";
 
-        if (!this.ModuleMatchesExpected(firstModule, firstValuation))
+        var currVal = firstVal ? secondValuation : firstValuation;
+        if (!this.ModuleMatchesExpected(firstModule, currVal))
         {
-            this.firstValuation.RuleIndicator.gameObject.SetActive(true);
-            if(firstVal)
-                this.FixAttackedModule(firstModule, secondModule, firstValuation);
+            currVal.RuleIndicator.gameObject.SetActive(true);
+            this.FixAttackedModule(firstModule, secondModule, currVal);
         }
         else
         {
-            this.firstValuation.RuleIndicator.gameObject.SetActive(false);
+            currVal.RuleIndicator.gameObject.SetActive(false);
         }
 
-        if (!this.ModuleMatchesExpected(secondModule, secondValuation))
+        currVal = firstVal ? firstValuation : secondValuation;
+        if (!this.ModuleMatchesExpected(secondModule, currVal))
         {
-            this.secondValuation.RuleIndicator.gameObject.SetActive(true);
-            if(!firstVal)
-                this.FixAttackedModule(firstModule, secondModule, secondValuation);
+            currVal.RuleIndicator.gameObject.SetActive(true);
+            this.FixAttackedModule(firstModule, secondModule, currVal);
         }
         else
         {
-            this.secondValuation.RuleIndicator.gameObject.SetActive(false);
+            currVal.RuleIndicator.gameObject.SetActive(false);
         }
 
         ////Successful attack if all modules between the two modules are attacked
@@ -185,4 +185,4 @@ public class Oracle : MonoBehaviour
             return;
         }
     }
-    }
+  }
