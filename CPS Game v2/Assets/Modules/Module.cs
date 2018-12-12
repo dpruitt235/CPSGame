@@ -47,7 +47,10 @@ public abstract class Module : MonoBehaviour
             }
             else
             {
-                return this.Water.purity[0];
+                if (this.Water != null)
+                    return this.Water.purity[0];
+                else
+                    return false;
             }
         }
     }
@@ -59,7 +62,10 @@ public abstract class Module : MonoBehaviour
             }
             else
             {
-                return this.Water.purity[1];
+                if (this.Water != null)
+                    return this.Water.purity[1];
+                else
+                    return false;
             }
         }
     }
@@ -71,7 +77,10 @@ public abstract class Module : MonoBehaviour
             }
             else
             {
-                return this.Water.purity[2];
+                if (this.Water != null)
+                    return this.Water.purity[2];
+                else
+                    return false;
             }
         }
     }
@@ -94,7 +103,10 @@ public abstract class Module : MonoBehaviour
         {
             "Attacked",
             "Capacity",
-            "Water"
+            "HasFlow",
+            "Purity1",
+            "Purity2",
+            "Purity3"
         };
 
         rootCanvas = (Canvas)FindObjectOfType(typeof(Canvas));
